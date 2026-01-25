@@ -1,0 +1,36 @@
+
+<div class="card custom-card border-0 shadow-none mb-0">
+  <div class="card-body p-0">
+      <div class="row g-2">
+        @for (image of nft().images; track $index) {
+          <div class="col-{{image.col}}">
+            <img [src]="image.src" alt="" class="nft-featuredcollect-image rounded w-100">
+        </div>
+        }
+      </div>
+  </div>
+  <div class="card-footer border-top-0 pb-0">
+      <div class="d-flex align-items-center">
+          <div class="d-flex align-items-center flex-fill">
+              <div class="me-2 lh-1">
+                  <span class="avatar avatar-md avatar-rounded">
+                      <img [src]="nft().author" alt="">
+                      <a href="javascript:void(0);" class="badge rounded-pill bg-primary avatar-badge"><i class="ri-check-line align-mmiddle"></i></a>
+                  </span>
+              </div>
+              <div>
+                  <p class="mb-0 fw-semibold"><a href="javascript:void(0);">{{nft().authorName}}</a></p>
+                  <p class="text-muted fs-12 mb-0">{{nft().mail}}</p>
+              </div>
+          </div>
+          <spk-dropdowns [Customclass]="'dropdown'"  [Icon]="true"
+               [IconClass]="'fe fe-more-vertical'"
+              [class]="'btn btn-icon btn-sm btn-primary-light no-caret'" [Menuclass]="'dropdown-menu '">
+              <li><a class="dropdown-item" href="javascript:void(0);">Action</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0);">Another action</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0);">Something else here</a></li>
+            </spk-dropdowns>
+
+      </div>
+  </div>
+</div>

@@ -1,0 +1,107 @@
+<app-breadcrumb title="Dashboards" sub_title="Jobs"  active_item="Jobs List"></app-breadcrumb>
+
+<!-- Start::row-1 -->
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card custom-card overflow-hidden">
+            <div class="card-header justify-content-between">
+                <div class="card-title">
+                    All Jobs List
+                </div>
+                <div class="d-flex flex-wrap gap-2">
+                    <a [routerLink]="['/dashboards/jobs/job-post']" class="btn btn-primary btn-wave">
+                        <i class="ri-add-line me-1 align-middle"></i>Post Job
+                    </a>
+                    <div>
+                        <input class="form-control" type="text" placeholder="Search Here" aria-label=".form-control-sm example">
+                    </div>
+                    <spk-dropdowns [Customclass]="'dropdown '" [Toggletext]="'Sort By'" [Icon]="true"
+            [IconClass]="'ri-arrow-down-s-line align-middle ms-1 d-inline-block'"
+            [class]="'btn btn-primary  no-caret'"
+            [Menuclass]="'dropdown-menu '">
+            <li><a class="dropdown-item" href="javascript:void(0);">Posted Date</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0);">Status</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0);">Department</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0);">Job Type</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0);">Newest</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0);">Oldest</a></li>
+          </spk-dropdowns>
+                </div>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                  <spk-reusable-tables [columns]="JobsListHeader" tableClass="table text-nowrap table-hover" checkboxClass="ps-4" [showCheckbox]="true">
+                    @for (job of JobsListData; track $index) {
+                      <tr>
+                        <td class="ps-4"><input class="form-check-input" type="checkbox" [checked]="job.isChecked" id="checkboxNoLabeljob22" value="" aria-label="..."></td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="lh-1">
+                                    <span class="avatar avatar-md avatar-rounded bg-{{job.svgClass}}-transparent svg-{{job.svgClass}}" [innerHTML]="getSanitizedSVG(job.svgIcon)">
+
+                                    </span>
+                                </div>
+                                <div class="ms-2">
+                                    <p class="fw-medium mb-0 d-flex align-items-center"><a [routerLink]="['/dashboards/jobs/job-details']">{{job.title}}</a></p>
+                                    <p class="fs-12 text-muted mb-0">{{job.location}}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <span class="avatar avatar-md me-1 avatar-rounded">
+                                    <img [src]="job.imgSrc" alt="">
+                                </span>
+                                <a href="javascript:void(0);" class="fw-medium mb-0">{{job.company}}</a>
+                            </div>
+                        </td>
+                        <td>{{job.department}}</td>
+                        <td>{{job.applicants}}</td>
+                        <td>{{job.interviews}}</td>
+                        <td><span class="badge rounded-pill bg-{{job.color}}-transparent">{{job.status}}</span></td>
+                        <td>{{job.employmentType}}</td>
+                        <td>{{job.postedDate}}</td>
+                        <td>
+                            <a [routerLink]="['/dashboards/jobs/job-details']" class="btn me-1 btn-icon btn-sm btn-primary-light btn-wave waves-effect waves-light">
+                                <i class="ri-eye-line"></i>
+                            </a>
+                            <a href="javascript:void(0);" class="btn me-1 btn-icon btn-sm btn-info-light btn-wave waves-effect waves-light">
+                                <i class="ri-edit-line"></i>
+                            </a>
+                            <a href="javascript:void(0);" class="btn btn-icon btn-sm btn-danger-light btn-wave waves-effect waves-light">
+                                <i class="ri-delete-bin-line"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    }
+                  </spk-reusable-tables>
+                </div>
+            </div>
+            <div class="card-footer ">
+                <div class="d-flex align-items-center flex-wrap overflow-auto">
+                    <div class="mb-2 mb-sm-0">
+                        Showing <b>1</b> to <b>10</b> of <b>100</b> entries <i class="bi bi-arrow-right ms-2 fw-medium"></i>
+                    </div>
+                    <div class="ms-auto">
+                        <ul class="pagination mb-0 overflow-auto">
+                            <li class="page-item disabled">
+                                <a class="page-link">Previous</a>
+                            </li>
+                            <li class="page-item active" aria-current="page"><a class="page-link" href="javascript:void(0);">1</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0);">2</a>
+                            </li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">3</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">4</a></li>
+                            <li class="page-item"><a class="page-link" href="javascript:void(0);">5</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="javascript:void(0);">Next</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End::row-1 -->

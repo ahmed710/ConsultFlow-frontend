@@ -1,0 +1,18 @@
+<div class="card custom-card">
+  <div class="card-body">
+      <div class="d-flex align-items-center gap-2 flex-wrap">
+          <div class="lh-1">
+              <span class="avatar avatar-lg avatar-rounded">
+                  <img [src]="profile().imgSrc" alt="">
+              </span>
+          </div>
+          <div class="flex-fill">
+              <span class="fw-semibold d-block">{{profile().name}}</span>
+              <span class="text-muted fs-13">{{profile().mail}}</span>
+          </div>
+          <div>
+              <button class="btn btn-{{profile().color}}-ghost"><i class="ri-user-{{profile().icon}}-line me-1"></i>{{profile().followers}}</button>
+          </div>
+      </div>
+  </div>
+</div>

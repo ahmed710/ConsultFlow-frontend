@@ -1,0 +1,140 @@
+<app-breadcrumb title="Applications" [subtitle]="false" active_item="Full Calendar"></app-breadcrumb>
+
+<!-- Start::row-1 -->
+<div class="row">
+  <div class="col-xxl-3">
+    <div class="card custom-card">
+      <div class="card-header justify-content-between">
+        <div class="card-title">All Events</div>
+        <button class="btn btn-primary btn-wave" data-bs-toggle="modal" (click)="open(content)"
+          data-bs-target="#addEvent"><i class="ri-add-line align-middle me-1 fw-medium d-inline-block"></i>Create New
+          Event</button>
+      </div>
+      <div class="card-body">
+        <div id="external-events" #external>
+          <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event bg-primary">
+            <div class="fc-event-main text-fixed-white">Calendar Events</div>
+          </div>
+          <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event bg-secondary"
+            data-class="bg-secondary">
+            <div class="fc-event-main text-fixed-white">Birthday Events</div>
+          </div>
+          <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event bg-success"
+            data-class="bg-success text-success">
+            <div class="fc-event-main text-fixed-white">Holiday Calendar</div>
+          </div>
+          <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event bg-info"
+            data-class="bg-info text-info">
+            <div class="fc-event-main text-fixed-white">Office Events</div>
+          </div>
+          <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event bg-warning" data-class="bg-warning">
+            <div class="fc-event-main text-fixed-white">Other Events</div>
+          </div>
+          <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event bg-danger" data-class="bg-danger">
+            <div class="fc-event-main text-fixed-white">Festival Events</div>
+          </div>
+          <div class="fc-event fc-h-event fc-daygrid-event fc-daygrid-block-event bg-teal" data-class="bg-teal">
+            <div class="fc-event-main text-fixed-white">Timeline Events</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card custom-card">
+      <div class="card-body p-0">
+        <div class="p-3">
+          <div class="d-flex align-items-center justify-content-between">
+            <h6 class="fw-medium mb-0">
+              Upcoming Events
+            </h6>
+            <a href="javascript:void(0);" class="fs-13 text-muted text-decoration-underline">View All<i
+                class="ti ti-arrow-narrow-right"></i></a>
+          </div>
+        </div>
+        <overlay-scrollbars class="p-3" id="full-calendar-activity">
+          <ul class="list-unstyled mb-0 fullcalendar-events-activity">
+            @for(event of SchoolEvents;track $index){
+            <li>
+              <div class="d-flex align-items-center justify-content-between flex-wrap">
+                <p class="mb-1 fw-medium">
+                  {{event.title}}
+                </p>
+                <span class="badge {{event.badgeColor}} mb-1">{{event.date}}</span>
+              </div>
+              <p class="mb-0 text-muted fs-13">{{event.description}}</p>
+            </li>
+            }
+          </ul>
+        </overlay-scrollbars>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-9">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">Full Calendar</div>
+      </div>
+      <div class="card-body">
+        <div id='calendar'>
+          <full-calendar #fullCalendar [options]="calendarOptions"></full-calendar>
+          <div #external class="external-events">
+          <!--<full-calendar [options]="calendarOptions"></full-calendar>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End::row-1 -->
+<!-- Add Event Modal -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title" id="addEventLabel1">Add Event</h6>
+    <button type="button" (click)="modal.close('cross click')" class="btn-close" data-bs-dismiss="modal"
+      aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <div class="row gy-3">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="form-label" for="eventType">Event Type:</label>
+          <spk-ng-select [options]="EventSelect" [selectClass]="'mailSelect'" [clearable]="true" [searchable]="true"
+            [hideSelected]="true" [placeholder]="'primary'" [additionalProperties]="{}">
+          </spk-ng-select>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="form-group">
+          <label class="form-label" for="eventName">Event Name:</label>
+
+          <input type="text" class="form-control" placeholder="Enter event" id="eventName">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="form-label" for="fromDate">From:</label>
+          <spk-flatpickr [placeholder]="'From Date'" class=""
+          [mode]="'single'" [altInput]="false" [convertModelValue]="true" [enableTime]="false"
+          [dateFormat]="'Y-m-d'"></spk-flatpickr>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="form-label" for="toDate">To:</label>
+          <spk-flatpickr [placeholder]="'To ate'" class=""
+          [mode]="'single'" [altInput]="false" [convertModelValue]="true" [enableTime]="false"
+          [dateFormat]="'Y-m-d'"></spk-flatpickr>
+        </div>
+      </div>
+      <div class="col-xl-12">
+        <div class="form-group">
+          <label class="form-label" for="description">Description:</label>
+          <textarea class="form-control" id="event-description" rows="3"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" id="addEventButton" (click)="modal.dismiss('cross click')">Add Event</button>
+  </div>
+</ng-template>
+
+<!-- Add Event Modal -->

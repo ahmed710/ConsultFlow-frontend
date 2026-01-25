@@ -1,0 +1,111 @@
+a{
+    text-decoration: none;
+}
+
+::ng-deep{
+    .main-header-right .dropdown-toggle::after{
+      display  :none !important;
+    }
+
+    // .dropdown-toggle::after{
+    //   display  :none;
+    // }
+
+    .ng-select.ng-select-opened .ng-select-container{
+        z-index: 3 !important;
+    }
+    .main-form-search.p-2 .ng-select-container{
+    border: none;
+    }
+    input{
+        font-size: 0.876rem !important;
+    }
+    @media screen and (min-width:568px) and (max-width:768px) {
+        .sticky-pin{
+            position: fixed !important;
+        }
+    }
+
+    @media (min-width:576px) {
+        .navbar-form.nav-item.my-auto.d-none.d-sm-block.d-lg-none .dropdown-menu{
+            transform: translate(-175px, 44px) !important;
+            width: 350px !important;
+        }
+    }
+}
+
+// .form-control{
+//     height: calc(1.5em + 0.75rem + 6px) !important;
+// }
+
+ .rtl .dropdown-menu-arrow.animated.fadeInUp.dropdown-menu {
+    top: 52px !important;
+    left: -10px !important;
+}
+
+input.form-control{
+    height: 38px;
+}
+
+.dropdown-menu[x-placement^=bottom]{
+    right: -10px !important;
+}
+
+// .nav-item.main-header-message.header-contact.dropdown .menu-header-content.text-left.d-flex{
+//     position: relative;
+//     top: -7px;
+//     height: 50px;
+// }
+
+// .nav-item.main-header-message.header-contact.dropdown .text-center.dropdown-footer{
+//     position: relative !important;
+//     bottom: -8px !important;
+// }
+
+.dropdown-toggle.nav-item{
+    padding: 0.5rem 0.9rem;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.responsive.main-header .dropdown-menu{
+    //  width:100% !important;
+    margin: 0 !important;
+}
+
+.btn.search-btn{
+    background-color: #6259ca;
+    color: #fff;
+    margin-left: -5px;
+    z-index: 5;
+}
+
+.dropdown-toggle.nav-link{
+    cursor: pointer;
+}
+
+
+// .form-control{
+//     border-radius: 5px !important;
+// }
+
+.main-header-right{
+    padding-right: 0 !important;
+}
+
+
+.ng-select, .ng-select div, .ng-select input, .ng-select span{
+    box-sizing: content-box !important;
+}
+ng-select{
+    height: 36px !important;
+}
+.dropdown-footer{
+    border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.menu-header-content.text-right.d-flex{
+	margin-top: -7px !important;
+}
+
+

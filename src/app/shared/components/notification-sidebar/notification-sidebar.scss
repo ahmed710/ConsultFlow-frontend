@@ -1,0 +1,76 @@
+::ng-deep{
+    .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+        color: #fff !important;
+        background-color: #5965f9 !important;
+        margin-block-start: 0px !important;
+    }
+    .card-body.tab-content {
+    padding:  0 !important;
+    }
+
+    .ng-dropdown-panel{
+        z-index: 3 !important;
+    }
+
+    .form-control.nice-select.mb-4.ng-select.ng-select-single.ng-select-searchable.ng-select-clearable{
+        border: none;
+    }
+    .sidebar .ng-select.ng-select-single .ng-select-container{
+        border: none !important;
+        background: transparent;
+        margin-top: -6px;
+    }
+
+    .ng-select.ng-select-focused:not(.ng-select-opened)>.ng-select-container{
+        box-shadow: none !important;
+    }
+
+}
+
+.nav-link{
+    padding: 0.5rem 0.7rem !important;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: #5965f9;
+    background-color: #5965f9;
+}
+
+.dropdown-item.active, .dropdown-item:active  {
+    background-color: #5965f9;
+
+}
+.header-user .dropdown-item.active, .dropdown-item:active  {
+    background-color: #e9ecef !important;
+    color: #000 !important;
+}
+.followers a{
+    color: #fff !important;
+}
+.card-body.border-top.border-bottom a{
+    color: #5965f9;
+}
+
+.custom-control-input:focus ~ .custom-control-label::before{
+    box-shadow: none;
+}
+.custom-control-label::after,
+.custom-control-label::before{
+    top:  0 !important;
+}
+// .sidebar.sidebar-right.sidebar-open {
+//   transform: translate(0);
+//   box-shadow: 5px 7px 26px -5px #d5d4e0;
+//   border-left: 1px solid #edecf7;
+// }
+// .sidebar.sidebar-right {
+//   transform: translate(100%);
+//   border-left: 1px solid #edecf7;
+// }
+// .sidebar-animate {
+//   transition: transform .3s ease;
+// }
+// .sidebar-right {
+//   right: 0;
+// }

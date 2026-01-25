@@ -1,0 +1,874 @@
+/* You can add global styles to this file, and also import other style files */
+@forward 'glightbox/dist/css/glightbox.min.css';
+@forward "../node_modules/ngx-toastr/toastr.css";
+
+@forward "../node_modules/quill/dist/quill.snow.css";
+@forward "../node_modules/quill/dist/quill.bubble.css";
+
+@forward "../node_modules/@ng-select/ng-select/themes/default.theme.css";
+
+// angular material
+@forward "../node_modules/@angular/cdk/overlay-prebuilt.css";
+@forward "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+@forward "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+@forward "ngx-tagify/styles/tagify";
+
+// =================== ngx-emoji-mart ===================
+@forward '@ctrl/ngx-emoji-mart/picker';
+
+// =================== Gridjs Tables ===================
+@forward '../node_modules/gridjs/dist/theme/mermaid.min.css';
+@forward '../node_modules/shepherd.js/dist/css/shepherd.css';
+//flatpicker
+@forward '../node_modules/flatpickr/dist/flatpickr.css';
+//NGX-FILEPOND
+@forward'../node_modules/filepond/dist/filepond.min.css';
+@forward "../node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+@forward '../node_modules/overlayscrollbars/styles/overlayscrollbars.css';
+@forward '../node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.css';
+@forward '../node_modules/leaflet/dist/leaflet.css';
+//ng2-nouislider
+@forward "../node_modules/nouislider/dist/nouislider.css";
+@forward '../node_modules/ngx-easy-table/style.css';
+
+@forward 'swiper/css';
+@forward 'swiper/css/pagination';
+@forward 'swiper/css/navigation';
+@forward 'swiper/element/css/mousewheel';
+
+
+@forward "../node_modules/intl-tel-input/build/css/intlTelInput.css";
+//@forward "../node_modules/swiper/swiper-bundle.css";
+@import "../public/assets/css/icons.css";
+@import "../public/assets/css/styles.css";
+
+
+
+// font awsome
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+.app-sidebar .side-menu__item.active {
+  color: var(--primary-color) !important;
+}
+
+.card.custom-card.testimonial1 {
+  &:before {
+    content: "\ec52";
+    position: absolute;
+    font-family: remixicon !important;
+    inset-inline-start: 1rem;
+    inset-block-start: 1rem;
+    font-size: 2.25rem;
+    line-height: 1;
+    color: var(--text-muted);
+    opacity: 0.25;
+  }
+}
+
+.faq-tabs, .faqs-tabs {
+  .tab-content .tab-pane {
+    border: 0 !important;
+    padding: 0 !important;
+
+  }
+}
+
+.ng-select.ng-select-single .ng-select-container .ng-value-container,
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-value {
+  img {
+    width: 1.45rem !important;
+    height: 1.45rem !important;
+    border-radius: 1.45rem !important;
+  }
+}
+
+.ngx-table {
+  text-align: start !important;
+  font-size: 0.813rem !important;
+  font-weight: 500 !important;
+
+  font-family: var(--default-font-family) !important;
+  border: 0 !important
+}
+
+.ngx-form-checkbox input:checked+.ngx-form-icon.custom-checkbox-color {
+
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+
+}
+
+.ks-modal-gallery-backdrop {
+  background: #000 !important;
+  opacity: 0.85 !important;
+}
+
+.ks-modal-gallery-panel {
+  z-index: 90000 !important;
+}
+
+.ngx-form-icon {
+  width: 1.1em !important;
+  height: 1.1em !important;
+  background-color: var(--custom-white) !important;
+  border: 1px solid var(--input-border) !important;
+  border-radius: 0.25rem !important;
+}
+
+.ngx-form-checkbox input:checked+.ngx-form-icon {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.ngx-pagination-steps {
+  padding-right: 15px !important;
+  float: right !important;
+}
+
+.ngx-pagination-range {
+  display: none !important;
+}
+
+.ngx-table__table--normal>tbody>tr>td,
+.ngx-table__table--normal>thead>tr>th {
+  padding: 10px 20px !important;
+}
+
+[data-theme-mode=dark] .NgxEditor__Dropdown:hover,
+[data-theme-mode=dark] .NgxEditor__Dropdown .NgxEditor__Dropdown--Active {
+  background-color: #0000 !important;
+}
+
+#buy-crypto .ng-select-container,
+#sell-crypto1 .ng-select-container,
+#buy-crypto-tab-pane .ng-select-container,
+#sell-crypto-tab-pane .ng-select-container {
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+}
+
+
+@media (min-width: 576px) {
+  .card-group>.card:not(:first-child) {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+  }
+}
+
+@media (min-width: 576px) {
+  .card-group>.card+.card {
+    margin-inline-start: 0;
+    border-inline-start: 0;
+  }
+}
+
+.avatar-list-stacked .avatar {
+  margin-inline-end: -0.65rem !important;
+}
+
+[data-menu-styles=dark] .app-sidebar .side-menu__item.active:before {
+  color: var(--primary-color);
+}
+
+.angular-editor .angular-editor-textarea {
+  border-top: 0px !important;
+}
+
+.angular-editor-textarea pre {
+  background-color: var(--custom-white) !important;
+  color: var(--default-text-color) !important;
+}
+
+//code {
+//  background-color: var(--custom-white) !important;
+//}
+
+@media (min-width: 576px) {
+  .create-nft-item .single-fileupload {
+    height: 15.75rem !important;
+    width: 15.25rem !important;
+  }
+}
+
+.avatar-list-stacked .avatar:hover {
+  color: #fff;
+}
+
+.tooltip-inner {
+  color: #fff !important;
+}
+
+.bootstrap tag {
+  color: #f9f9f9 !important;
+  background: var(--primary-color) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  height: 23px !important;
+  line-height: 23px !important;
+}
+
+.bootstrap.ng2-tag-input {
+  border-bottom: 0px solid #efefef !important;
+}
+
+.mt-auto {
+  margin-top: auto !important;
+}
+
+.py-3 {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+.custom-server .invalid-feedback {
+  display: block;
+}
+
+.doublemenu_slide-menu {
+  display: none !important;
+}
+@media (min-width: 992px) {
+  [data-vertical-style="doublemenu"] {
+    .app-sidebar .side-menu__item.active .badge {
+      background-color: rgba(255, 255, 255, 0.1) !important;
+      color: #fff !important;
+    }
+  }
+}
+
+.orders-selectDropdown {
+  .ng-select {
+    min-width: 150px !important;
+  }
+}
+
+.kanban-header {
+  .ng-select {
+    min-width: 100px !important;
+  }
+}
+
+.advanced-search-results {
+  .ng-select {
+    min-width: 186px !important;
+  }
+}
+
+[dir=rtl] {
+  .custom-crypto2 .dropdown-menu {
+    inset: auto auto 0px 0px !important;
+  }
+
+  .thumbs-gallery-swiper {
+    direction: ltr;
+  }
+}
+
+table.fc-col-header,
+.fc-daygrid-body.fc-daygrid-body-balanced,
+.fc-scrollgrid-sync-table {
+  width: 100% !important;
+}
+
+.color-picker {
+  background-color: var(--custom-white) !important;
+  border-color: var(--default-border) !important;
+}
+
+.ql-editor td {
+  border-color: var(--default-border) !important;
+}
+
+.color-picker .hex-text .box input {
+  border-color: var(--input-border) !important;
+}
+
+.nested-btn-group {
+  .dropdown .btn {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+  }
+}
+
+@media (min-width: 370px) {
+  .custom-flex-container {
+    height: 200px;
+  }
+}
+
+.simple-list-example-scrollspy a {
+  border: 1px solid var(--default-border);
+
+  &.active {
+    border: 1px solid var(--primary-color);
+  }
+}
+
+.swiper-container::part(pagination) {
+  color: #fff !important;
+}
+
+@media (min-width: 992px) {
+  [data-nav-layout=horizontal] {
+    &[data-width="boxed"] .main-menu-container {
+      .slide-left {
+        inset-inline-start: 1%;
+      }
+
+      .slide-right {
+        inset-inline-end: 1%;
+      }
+    }
+
+    &[data-menu-styles="color"],
+    &[data-menu-styles="gradient"] {
+      &[data-theme-mode="dark"] {
+
+        .app-sidebar .slide-menu.child1 .side-menu__item.active,
+        .app-sidebar .slide-menu.child2 .side-menu__item.active,
+        .app-sidebar .slide-menu.child3 .side-menu__item.active {
+          color: #fff !important;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 364px) {
+  .create-nft-item .filepond--root {
+    height: 10.75rem !important;
+    width: 10.25rem !important;
+  }
+
+  .create-nft-item .filepond--file {
+    width: 100% !important;
+    height: 10.08rem !important;
+  }
+}
+
+gallery-slider img {
+  border-radius: 0.3rem !important;
+}
+
+.simple-list-example-scrollspy a {
+  border: 0 !important;
+}
+
+.swal2-container .swal2-title {
+  color: inherit !important;
+}
+
+.color-picker {
+  visibility: visible !important;
+}
+.VYZOR-kanban-board .task-Null:before {
+  position: absolute;
+  content: "";
+  inset: 0;
+  background-color: var(--custom-white);
+  border-radius: .3rem;
+  background-image: url(../public/assets/images/media/media-81.svg);
+  background-size: cover;
+  background-position: center;
+  height: 12.5rem;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.nft-tag.nft-tag-purple .nft-tag-icon {
+  color: rgb(var(--purple-rgb));
+}
+[dir=rtl] .podcast-banner-img {
+  transform: scaleX(-1);
+}
+#candidates-overview .apexcharts-datalabels-group text, #patients-visits .apexcharts-datalabels-group text, #task-activity .apexcharts-datalabels-group text, #top-categories1 .apexcharts-datalabels-group text {
+  fill: var(--default-text-color) !important;
+}
+.ngx-form-checkbox input:checked + .ngx-form-icon::before {
+  right: 1px;
+}
+
+table.table:not(.table-bordered) tbody tr:last-child td, table.table:not(.table-bordered) tbody tr:last-child th {
+  border-bottom: 0;
+}
+
+.search_drop {
+    .list-group-item a:hover, .list-group-item:hover a {
+        color: var(--primary-color);
+    }
+}
+.search_drop {
+    .list-group-item:hover {
+        background-color: rgba(var(--primary-rgb), 0.05);
+    }
+}
+.cart-dropdown-item {
+  input.form-control {
+    height: 20px;
+  }
+}
+.flatpickr-current-month span.cur-month:hover {
+    background: transparent !important;
+}
+.flatpickr-current-month span.cur-month {
+  font-size: 14px !important;
+}
+.search-modal-input {
+  .btn {
+    border-end-end-radius: 0.25rem !important;
+    border-start-end-radius: 0.25rem !important;
+  }
+}
+@media (min-width: 1400px) {
+  [data-width="boxed"] {
+    .custom-border-end {
+        border-inline-end: 0px !important;
+    }
+    .mat-horizontal-stepper-content.mat-horizontal-stepper-content-previous {
+      transform: none !important;
+    }
+    .mat-stepper-animations-enabled .mat-horizontal-stepper-content {
+      transition: none !important;
+    }
+    .mat-horizontal-stepper-content.mat-horizontal-stepper-content-next {
+      transform: none !important;
+    }
+  }
+}
+.ng-select .ng-select-container:hover {
+  box-shadow: none !important;
+}
+.ng2-tag-input__text-input {
+    height: 21px !important;
+}
+.ng2-tag-input {
+    padding: .2rem 0 !important;
+    min-height: 29px !important;
+}
+tag-input {
+  border-radius: 0.3rem;
+}
+.ng2-tag-input__text-input {
+    border-color: var(--input-border) !important;
+    color: var(--default-text-color) !important;
+    background-color: var(--form-control-bg) !important;
+}
+.ng2-tag-input__text-input::-webkit-input-placeholder {
+    opacity: 0.6;
+    color: var(--default-text-color) !important;
+}
+.NgxEditor__Popup--Form {
+    button {
+        font-size: 0.8125rem;
+        border-radius: 0.3rem;
+        padding: 0.25rem 0.5rem;
+        box-shadow: none;
+        font-weight: 400;
+        background-color: rgb(var(--primary-rgb)) !important;
+        border: 1px solid rgb(var(--primary-rgb)) !important;
+        color: #fff !important;
+    }
+}
+.NgxEditor__MenuItem--Button {
+    font-size: 0.8125rem;
+    border-radius: 0.3rem;
+    padding: 0.25rem 0.5rem;
+    box-shadow: none;
+    font-weight: 400;
+    background-color: rgb(var(--primary-rgb)) !important;
+    border: 1px solid rgb(var(--primary-rgb)) !important;
+    color: #fff !important;
+}
+.flatpickr-calendar.animate.open {
+    margin-block-start: 4px;
+}
+[dir="rtl"] {
+  .form-floating.floating-info > .form-control-plaintext ~ label, .form-floating.floating-info > .form-control:focus ~ label,
+  .form-floating.floating-info > .form-control:not(:placeholder-shown) ~ label, .form-floating.floating-info > .form-select ~ label {
+      transform: scale(0.85) translateY(-0.5rem) translateX(0.35rem);
+  }
+  .form-floating > .form-control-plaintext ~ label, .form-floating > .form-control:focus ~ label, .form-floating > .form-control:not(:placeholder-shown) ~ label, .form-floating > .form-select ~ label {
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.95rem);
+  }
+  .point-left:before {
+      padding-left: 1em !important;
+      padding-right: 0 !important;
+  }
+  .point-right:after {
+      padding-right: 1em !important;
+      padding-left: 0 !important;
+  }
+  .filepond--list .filepond--item div {
+      color: #fff !important;
+      direction: ltr;
+  }
+  .ng-select .ng-select-container .ng-value-container {
+      padding-right: 13px !important;
+      padding-left: 0 !important;
+  }
+  .ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+      padding-left: 30px !important;
+      padding-right: 10px !important;
+  }
+}
+.custom-buy-sell {
+    .ng-select {
+        width: 80px;
+    }
+}
+.ng-select.ng-select-single .ng-select-container .ng-value-container .ng-input {
+    padding-right: 30px !important;
+}
+.nft-tag.nft-tag-purple:hover, .nft-tag.nft-tag-purple.active {
+    color: rgb(var(--purple-rgb));
+}
+.ng-select .ng-select-container .ng-value-container {
+    padding-left: 13px !important;
+}
+.main-chat-msg {
+    word-wrap: break-word !important;
+    word-break: break-word !important;
+}
+@media (max-width: 320px) {
+    .emoji-mart {
+        width: 234px !important;
+    }
+    .emoji-picker-position {
+        inset-inline-end: 1px !important;
+    }
+}
+@media (max-width: 360px) {
+  .mat-mdc-paginator-range-label {
+    margin: 0 !important;
+  }
+  .mat-mdc-paginator-page-size {
+    flex-wrap: wrap !important;
+    gap: 0.5rem;
+  }
+  .mat-mdc-paginator-range-actions {
+    text-align: end;
+  }
+  .mat-mdc-icon-button.mat-mdc-button-base {
+    width: 40px !important;
+  }
+  .mat-mdc-form-field-flex .mat-mdc-form-field-infix {
+    width: 164px;
+  }
+  .custom-typo-text {
+    font-size: 12px;
+  }
+  .total-mails .mail-messages {
+      max-height: calc(100vh - 24rem);
+  }
+  .ng-select .ng-select-container .ng-value-container .ng-placeholder {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 144px;
+  }
+  dropzone.flex>.dropzone.dz-wrapper.dz-multiple {
+    justify-content: center !important;
+  }
+}
+.NgxEditor__Content {
+  overflow: auto;
+}
+.mail-freezetime .ng-select {
+  width: 90px;
+}
+.mail-custom-attempts .ng-select {
+  width: 122px;
+}
+.status-custom .ng-select {
+  width: 165px;
+}
+.inline-selectclass .ng-select {
+  width: 100px;
+}
+.files-main-nav {
+  overflow: auto;
+}
+.ng-select .ng-select-container:focus {
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 2px 6px 0px var(--primary03) !important;
+}
+.ng-dropdown-panel.ng-select-top {
+    box-shadow: none !important;
+}
+.record-picker li:last-child {
+    border-bottom: 0 !important
+}
+.input-group-lg > .btn, .input-group-lg > .form-control, .input-group-lg > .form-select, .input-group-lg > .input-group-text {
+    font-size: 1.25rem !important;
+}
+.input-group-sm > .btn, .input-group-sm > .form-control, .input-group-sm > .form-select, .input-group-sm > .input-group-text {
+    font-size: 0.875rem !important;
+}
+.form-select.form-select-lg {
+    padding-block-start: 0.5rem !important;
+    padding-block-end: 0.5rem !important;
+    padding-inline-start: 1rem !important;
+    // font-size: 1rem !important;
+}
+
+.form-select.form-select-sm {
+    padding-block-start: 0.25rem !important;
+    padding-block-end: 0.25rem !important;
+    padding-inline-start: 0.5rem !important;
+    // font-size: 0.875rem !important;
+}
+.dropzone .dz-preview:hover {
+    z-index: 99 !important;
+}
+.numInputWrapper span.arrowDown:after,
+.numInputWrapper span.arrowUp:after {
+    inset-inline-start: -9px;
+}
+.list-popular-blogs .list-group-item {
+    margin-block-end: 0.25rem;
+}
+.ng-select.ng-select-opened > .ng-select-container {
+    border-color: var(--primary05) !important;
+    box-shadow: 0 0 4px var(--primary05) !important;
+}
+.second-dropdown {
+  .btn {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+    line-height: 1.6;
+  }
+}
+.input-group-text-first {
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+}
+@media (min-width: 992px) {
+    [data-nav-layout="horizontal"][data-nav-style="menu-hover"] {
+        .landing-body .slide.has-sub.open > .side-menu__item .side-menu__angle {
+        transform: rotate(0deg);
+        }
+    }
+}
+figure.custom-tabs {
+  margin: 0 !important;
+}
+.tooltip.tooltip-dark .tooltip-inner {
+  color: var(--white-9) !important;
+}
+[data-theme-mode=dark] #chart-5 .apexcharts-tooltip * {
+    color: #000;
+}
+.mat-mdc-no-data-row {
+    td {
+        padding: 10px 15px;
+        text-align: center;
+    }
+}
+@media (min-width: 992px) {
+    [data-bg-img="bgimg1"], [data-bg-img="bgimg2"], [data-bg-img="bgimg3"], [data-bg-img="bgimg4"], [data-bg-img="bgimg5"] {
+        &[data-theme-mode="dark"][data-menu-styles="dark"][data-vertical-style="doublemenu"] .app-sidebar .doublemenu_slide-menu {
+          background-color: rgb(var(--body-bg-rgb)) !important;
+        }
+        &[data-menu-styles="light"][data-theme-mode="dark"][data-icon-overlay="open"] {
+          .app-sidebar .side-menu__item.active .badge {
+            color: var(--primary-color) !important;
+            background-color: var(--primary01) !important;
+          }
+        }
+    }
+}
+.form-control-cart {
+  margin-block-start: 1px;
+}
+
+.ng-select.ng-select-disabled > .ng-select-container {
+  background-color: #f9f9f9 !important;
+}
+
+.bootstrap delete-icon svg
+ {
+    vertical-align: top !important;
+    height: 20px !important;
+}
+
+@media (max-width: 320px) {
+  .custom-switcher-foot .btn {
+      padding: .375rem .75rem !important;
+  }
+}
+.NgxEditor__MenuItem.NgxEditor__MenuItem--Active, .NgxEditor__MenuItem .NgxEditor__MenuItem--Active {
+  color: var(--primary-color ) !important;
+}
+.NgxEditor__Popup {
+left: 7px !important;
+}
+
+@media (max-width: 576px) {
+  .ql-toolbar.ql-snow .ql-background .ql-picker-options, .ql-toolbar.ql-snow .ql-color .ql-picker-options {
+      width: 100px;
+      left: -34px;
+  }
+}
+@media (max-width: 1199px) {
+  .dashboard-main-card.dashboard-main-border {
+      border-bottom: 1px solid var(--default-border) !important;
+  }
+}
+@media (max-width: 364px) {
+.companies-search-input spk-ng-select {
+  margin-inline-start: 0px !important;
+}
+}
+[dir=rtl] .ri-skip-forward-fill, [dir=rtl] .ri-skip-back-fill {
+  transform: rotate(180deg);
+}
+.form-check-input.form-checked-orange:checked
+{
+background-color:  rgb(var(--orange-rgb)) !important;
+border:  rgb(var(--orange-rgb)) !important
+}
+.mat-step-header.cdk-keyboard-focused, .mat-step-header.cdk-program-focused {
+  background-color: #fff !important;
+}
+@media (max-width: 1200px) {
+.emoji-mart{
+width: 230px !important;
+}
+.emoji-picker-position{
+  right: 20px !important
+}
+}
+[data-menu-styles=color] .app-sidebar .badge.bg-primary-transparent, [data-menu-styles=gradient] .app-sidebar .badge.bg-primary-transparent {
+  background-color: #fff3 !important;
+  color: #fff !important;
+}
+@media (min-width: 992px) {
+  [data-vertical-style=doublemenu][data-menu-styles=light][data-theme-mode=dark][data-bg-img=bgimg1] .app-sidebar .doublemenu_slide-menu, [data-vertical-style=doublemenu][data-menu-styles=light][data-theme-mode=dark][data-bg-img=bgimg2] .app-sidebar .doublemenu_slide-menu, [data-vertical-style=doublemenu][data-menu-styles=light][data-theme-mode=dark][data-bg-img=bgimg3] .app-sidebar .doublemenu_slide-menu, [data-vertical-style=doublemenu][data-menu-styles=light][data-theme-mode=dark][data-bg-img=bgimg4] .app-sidebar .doublemenu_slide-menu, [data-vertical-style=doublemenu][data-menu-styles=light][data-theme-mode=dark][data-bg-img=bgimg5] .app-sidebar .doublemenu_slide-menu {
+      background: #fff !important;
+  }
+}
+[data-menu-styles=light][data-theme-mode=dark] .doublemenu_slide-menu button
+ {
+    color: #000 ;
+}
+@media (min-width: 992px) {
+  [data-vertical-style=detached] .app-content {
+      margin-block-start: 4.5rem !important;
+  }
+}
+
+@media (min-width: 992px) {
+  [data-nav-layout=horizontal][data-theme-mode=dark][data-menu-styles=light] .app-sidebar .slide.has-sub .slide-menu {
+      box-shadow: 0 0 .375rem #0000001a;
+  }
+}
+.color-picker {
+  background-color: #ffffff !important;
+}
+[data-menu-styles=color] .side-menu__item.active {
+  color: #fff !important;
+}
+[dir=rtl] .point-left:before {
+ content: "\25b6" !important;
+}
+[dir=rtl] .point-right:after {
+  content: "\25c0" !important;
+}
+#primary-colored-slider .ngx-slider-selection{
+  background-image: linear-gradient(to right, var(--primary-color) 0%, var(--primary-color) 100%) !important;
+}
+[data-theme-mode=dark] .ngx-slider .ngx-slider-bar {
+  background: var(--default-background);
+}
+ngx-colors-panel .opened {
+  background: var(--custom-white) !important;
+}
+@media (min-width: 320px) {
+  .color-picker .open{
+
+    left: 0px !important;
+  }
+}
+.desc-bottom .gslide-image img {
+  border-bottom-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+}
+.swal2-container .swal2-styled.swal2-cancel {
+  margin-left: 6px !important;
+}
+
+
+.VYZOR-kanban-board .kanban-tasks-type overlay-scrollbars {
+  padding: 0 1rem 0 0 !important;
+}
+@media (max-width: 550px) {
+#player, .plyr__video-embed iframe {
+  height: 100%;
+}
+}
+.table.table-bordered.border-warning {
+  margin-inline-end: 1px;
+}
+[data-width=boxed] {
+.custom-borderWarning-table{
+  border-inline-end: 1px solid rgba(var(--warning-rgb), 0.1);
+}
+}
+
+[dir="rtl"]{
+  .mat-mdc-table{
+    margin-inline-end: 1px;
+  }
+}
+
+.NgxEditor__Popup--Col{
+  input{
+    border: 1px solid var(--default-border) !important;
+    border-radius: 0.25rem;
+  }
+}
+
+code[class*=language-] {
+  max-height: 400px !important;
+}
+
+
+.custom-Testimonials {
+  & {
+      swiper-container::part(bullet-active) {
+          background-color: var(primary-color);
+      }
+
+  }
+
+
+}
+swiper-container.custom-Testimonials::part(wrapper) {
+  margin-bottom: 20px;
+}
+
+swiper-container.custom-Testimonials::part(bullet),
+swiper-container.custom-Testimonials::part(bullet-active) {
+  width: 20px;
+  height: 3px;
+  border-radius: 10px;
+  transform: translate(0px, 10px);
+
+}
+.cdk-overlay-container {
+  z-index: 1 !important;
+}
+.ng-value {
+  background-color: rgb(var(--light-rgb));
+}
+.tagify-tag .ng-select.ng-select-multiple .ng-select-container .ng-value-container .ng-value {
+  background-color: rgb(var(--light-rgb)) !important;
+}
+.cdk-drag {
+  background-color: rgb(var(--light-rgb)) !important;
+}
+@media (max-width: 991.98px) {
+  [data-toggled=open] #responsive-overlay {
+      visibility: visible;
+  }
+}

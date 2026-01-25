@@ -1,0 +1,21 @@
+<div class="card custom-card {{cardClass()}}">
+  <div class="card-body {{bodyClass()}}">
+    <div class="d-flex align-items-center fw-medium justify-content-between gap-1 flex-wrap">
+      <div class="d-flex align-items-center gap-2 flex-wrap">
+        <div class="lh-1">
+          <span class="avatar avatar-sm avatar-rounded">
+            <img [src]="deal().imgSrc" alt={{deal().title}}>
+          </span>
+        </div>
+        <div class="fs-14">{{deal().title}}</div>
+      </div>
+      <div>{{deal().price}}</div>
+    </div>
+    <div class="deal-description">
+      <div class="my-1">
+        <a href="javascript:void(0);" class="company-name">{{deal().company}}</a>
+      </div>
+      <div class="text-muted fs-12">{{deal().date}}</div>
+    </div>
+  </div>
+</div>

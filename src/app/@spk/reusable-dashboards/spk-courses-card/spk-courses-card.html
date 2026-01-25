@@ -1,0 +1,18 @@
+<div class="card custom-card {{course().cardClass}}">
+  <div class="card-body">
+      <div class="d-flex align-items-start gap-3 flex-wrap">
+          <div class="lh-1">
+              <span class="avatar avatar-lg avatar-rounded bg-{{course().svgColor}} svg-white" [innerHTML]="getSanitizedSVG(course().svgIcon)"></span>
+          </div>
+          <div>
+              <span class="d-block mb-1">
+                {{course().title}}
+              </span>
+              <div class="d-flex align-items-center gap-2">
+                  <h5 class="fw-semibold mb-0">{{course().value}}</h5>
+                  <span class="badge bg-{{course().svgColor}}-transparent rounded-pill"><i class={{course().icon}}></i>{{course().percent}}</span>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,135 @@
+<app-breadcrumb title="Dashboards" sub_title="CRM" active_item="Deals"></app-breadcrumb>
+
+<!-- Start::row-1 -->
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="card-body">
+        <div class="d-flex align-items-center flex-wrap gap-2 justify-content-between">
+          <div class="d-flex align-items-center">
+            <span class="fw-medium fs-16 me-1">Deals</span>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create-contact" (click)="open(content)"><i
+                class="ri-add-line me-1 fw-medium align-middle"></i>New Deal</button>
+            <button type="button" class="btn btn-success">Export As CSV</button>
+            <spk-dropdowns [Customclass]="'dropdown'" [Icon]="true" [title]="'Sort By'"
+              [IconClass]="'ri-arrow-down-s-line align-middle ms-1 d-inline-block'"
+              [class]="'btn btn-light btn-wave waves-effect waves-light no-caret'" [Menuclass]="'dropdown-menu'">
+              <li><a class="dropdown-item" href="javascript:void(0);">Newest</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0);">Date Added</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0);">A - Z</a></li>
+            </spk-dropdowns>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--End::row-1 -->
+
+<!-- Start::row-2 -->
+<div class="row">
+  @for(deal of dealCards;track $index){
+    <div class="col-xxl-2 col-md-4">
+      <div class="card custom-card">
+        <div class="card-body p-3">
+          <div class="d-flex align-items-top flex-wrap justify-content-between">
+            <div>
+              <div class="fw-medium fs-15 {{deal.labelclass}}">{{deal.label}}</div>
+              <span class=" badge bg-light text-default">{{deal.badgeText}}</span>
+            </div>
+            <div>
+              <span class="{{deal.amountStyle}} fw-medium">{{deal.amount}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>
+<!-- End::row-2 -->
+
+<!-- Start::row-3 -->
+<div class="row">
+  <div class="col-xxl-2" id="leads-discovered" [sortablejs]="normalList1" [sortablejsOptions]="normalOptions">
+    @for(card of PrimaryDeal;track $index){
+      <spk-deals-card [deal]="card"></spk-deals-card>
+    }
+  </div>
+  <div class="col-xxl-2" id="leads-qualified" [sortablejs]="normalList2" [sortablejsOptions]="normalOptions1">
+    @for(card of WarningDeal;track $index){
+      <spk-deals-card [deal]="card"></spk-deals-card>
+    }
+  </div>
+  <div class="col-xxl-2" id="contact-initiated" [sortablejs]="normalList3" [sortablejsOptions]="normalOptions2">
+    @for(card of SuccessDeal;track $index){
+      <spk-deals-card [deal]="card"></spk-deals-card>
+    }
+  </div>
+  <div class="col-xxl-2" id="needs-identified" [sortablejs]="normalList4" [sortablejsOptions]="normalOptions3">
+    @for(card of InfoDeal;track $index){
+      <spk-deals-card [deal]="card"></spk-deals-card>
+    }
+  </div>
+  <div class="col-xxl-2" id="negotiation" [sortablejs]="normalList5" [sortablejsOptions]="normalOptions4">
+    @for(card of DangerDeals;track $index){
+      <spk-deals-card [deal]="card"></spk-deals-card>
+    }
+  </div>
+  <div class="col-xxl-2" id="deal-finalized"[sortablejs]="normalList6" [sortablejsOptions]="normalOptions5" >
+    @for(card of PinkDeals;track $index){
+      <spk-deals-card [deal]="card"></spk-deals-card>
+    }
+  </div>
+</div>
+<!-- End::row-3 -->
+
+<!-- Start:: New Deal -->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h6 class="modal-title">New Deal</h6>
+    <button type="button" class="btn-close" (click)="d('Cross click')" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body px-4">
+    <div class="row gy-3">
+      <div class="col-xl-12">
+        <div class="mb-0 text-center">
+          <span class="avatar avatar-xxl avatar-rounded">
+            <img [src]="url1 ? url1 :'./assets/images/faces/9.jpg'" alt="" id="profile-img">
+            <span class="badge rounded-pill bg-primary avatar-badge">
+              <input type="file" (change)="handleFileInput($event)" name="photo"
+                class="position-absolute w-100 h-100 op-0" id="profile-change">
+              <i class="fe fe-camera"></i>
+            </span>
+          </span>
+        </div>
+      </div>
+      <div class="col-xl-6">
+        <label for="deal-name" class="form-label">Contact Name</label>
+        <input type="text" class="form-control" id="deal-name" placeholder="Contact Name">
+      </div>
+      <div class="col-xl-6">
+        <label for="deal-lead-score" class="form-label">Deal Value</label>
+        <input type="number" class="form-control" id="deal-lead-score" placeholder="Deal Value">
+      </div>
+      <div class="col-xl-12">
+        <label for="company-name" class="form-label">Company Name</label>
+        <input type="text" class="form-control" id="company-name" placeholder="Company Name">
+      </div>
+      <div class="col-xl-12">
+        <label class="form-label">Last Contacted</label>
+        <div class="input-group">
+          <div class="input-group-text text-muted"> <i class="ri-calendar-line"></i> </div>
+          <spk-flatpickr placeholder="Choose Date With Time" class="" [mode]="'single'" [altInput]="false"
+            [convertModelValue]="true" [enableTime]="true" [dateFormat]="'Y-m-d H:i'"></spk-flatpickr>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-light" (click)="c('Cancel click')" data-bs-dismiss="modal">Cancel</button>
+    <button type="button" class="btn btn-primary">Create Deal</button>
+  </div>
+</ng-template>
+<!-- End:: New Deal -->

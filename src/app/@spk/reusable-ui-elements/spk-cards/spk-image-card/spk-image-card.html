@@ -1,0 +1,36 @@
+
+<div class="card custom-card">
+  @if (TopImagePlacement()) {
+      <img [src]="image()" class="card-img-top" alt="...">
+  }
+  @if(headertitle){
+
+      <div class="card-header" >
+        <div class="card-title">
+          {{ headertitle }}
+        </div>
+      </div>
+    }
+  <div class="card-body">
+      <h6 class="card-title fw-medium">{{title()}}</h6>
+      <p class="card-text {{descriptionClass()}} text-muted">{{discription()}}</p>
+      @if(customStatusPlacement()){
+          <p class="card-text mb-0"><small>{{status()}}</small></p>
+      }
+  </div>
+  @if (bottomImagePlacement()) {
+      <img [src]="image()" class="card-img-bottom" alt="...">
+  }
+  @if(BottomStatusPlacement()){
+      <div class="card-body">
+      <p class="card-text mb-0"><small>{{status()}}</small></p>
+      </div>
+  }
+  @if(footertext()){
+
+      <div class="card-footer" >
+          <p class="card-text mb-0"><small>Last updated 3 mins ago</small></p>
+      </div>
+    }
+  </div>
+

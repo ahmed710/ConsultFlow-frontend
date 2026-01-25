@@ -1,0 +1,41 @@
+<div class="card custom-card">
+    <div class="d-flex align-items-center justify-content-between nft-like-section w-100 px-3">
+        <div class="flex-fill">
+            <button class="btn btn-sm btn-icon btn-danger rounded-pill btn-wave">
+                <i class="ri-heart-fill"></i>
+            </button>
+        </div>
+        <div>
+            <span class="badge nft-like-badge text-default"><i
+                    class="ri-heart-fill me-1 text-danger align-middle d-inline-block"></i>{{nft().likes}}</span>
+        </div>
+        <p class="mb-0 nft-auction-time">{{nft().time}}</p>
+    </div>
+    <div class="card-body p-2">
+        <img [src]="nft().image" class="card-img mb-3" alt={{nft().title}}>
+        <div class="p-2">
+            <div class="mb-3">
+                <a  [routerLink]="['/dashboards/nft/nft-details']">
+                    <h6 class="fw-semibold mb-1 text-truncate">{{nft().title}}</h6>
+                </a>
+                <a href="javascript:void(0);"><span class="fs-13 text-muted fw-medium">By {{nft().author}}</span></a>
+            </div>
+            <div class="d-flex align-items-end justify-content-between flex-wrap gap-2">
+                <div class="flex-fill">
+                    <span class="text-muted fs-12 d-block mb-1">Current Bid</span>
+                    <div class="d-flex align-items-center gap-2 fw-semibold">
+                        <div class="lh-1">
+                            <span class="avatar avatar-xs avatar-rounded">
+                                <img src="./assets/images/crypto-currencies/crypto-icons/ethereum-eth-logo.svg" alt="">
+                            </span>
+                        </div>
+                        <div>{{nft().currentBid}}</div>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-primary">Place a Bid</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

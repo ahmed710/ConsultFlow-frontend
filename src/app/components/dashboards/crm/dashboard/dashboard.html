@@ -1,0 +1,349 @@
+<app-breadcrumb title="Dashboards" sub_title="CRM" active_item="Dashboard"></app-breadcrumb>
+
+<!-- Start:: row-1 -->
+<div class="row">
+  <div class="col-xxl-5">
+    <div class="row">
+      @for(widget of StatCards;track $index){
+      <div class="col-lg-6">
+        <spk-employee-card [widget]="widget"></spk-employee-card>
+      </div>
+      }
+      <div class="col-xl-12">
+        <div class="card custom-card">
+          <div class="card-header">
+            <div class="card-title">
+              Revenue Analytics
+            </div>
+          </div>
+          <div class="card-body pb-0">
+            <div id="crm-revenue-analytics">
+              <spk-apexcharts [chartOptions]="CrmOptions"></spk-apexcharts>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-4">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="card custom-card overflow-hidden">
+          <div class="card-header justify-content-between">
+            <div class="card-title">
+              Tasks List
+            </div>
+            <ul ngbNav #nav="ngbNav" [activeId]="2" class="nav nav-tabs justify-content-end nav-tabs-header card-headertabs" role="tablist">
+              <li [ngbNavItem]="1" class="nav-item" role="presentation">
+                <a ngbNavLink class="nav-link" data-bs-toggle="tab" role="tab" aria-current="page" href="#today"
+                  aria-selected="false" tabindex="-1">Today</a>
+                  <ng-template ngbNavContent>
+                    <ul class="list-unstyled task-list-tab">
+                      @for(task of Tasks;track $index){
+                        <li>
+                          <div class="d-flex align-items-start gap-2 flex-wrap">
+                            <div class="mb-3 form-check">
+                              <input type="checkbox" class="form-check-input" [checked]="task.completed">
+                            </div>
+                            <div class="flex-fill">
+                              <div class="d-flex align-items-center gap-2 mb-1">
+                                <a href="javascript:void(0);" class="crm-task-name">{{task.title}}</a>
+                                <span class="avatar avatar-xs avatar-rounded bg-light border text-muted fw-semibold"
+                                  data-bs-toggle="tooltip" ngbTooltip="in-progress" data-bs-original-title="Progress">
+                                  <i class="ti ti-info-circle fs-11"></i>
+                                </span>
+                              </div>
+                              <div class="d-flex align-items-center gap-2 lh-1">
+                                <a href="javascript:void(0);" class="fs-12">{{task.code}}</a>
+                                <div class="vr"></div>
+                                <span class="text-muted mb-0 fs-12"><i class="ti ti-user me-1 fw-medium"></i>{{task.assignee}}</span>
+                                <div class="vr"></div>
+                                <span class="badge "  [ngClass]="{
+                                  'bg-danger-transparent': task.priority === 'High',
+                                  'bg-warning-transparent': task.priority === 'Medium',
+                                  'bg-success-transparent': task.priority !== 'High' && task.priority !== 'Medium'
+                                }">{{task.priority}}</span>
+                              </div>
+                            </div>
+                            <div class="text-end">
+                              <span class="d-block fw-medium">{{task.dueTime}}</span>
+                              <span class="d-block fs-12 text-muted">Due Time</span>
+                            </div>
+                          </div>
+                        </li>
+                      }
+                    </ul>
+                  </ng-template>
+              </li>
+              <li [ngbNavItem]="2" class="nav-item" role="presentation">
+                <a ngbNavLink class="nav-link" data-bs-toggle="tab" role="tab" aria-current="page" href="#Upcoming"
+                  aria-selected="true">Upcoming</a>
+                  <ng-template ngbNavContent>
+                    <ul class="list-unstyled task-list-tab">
+                      @for(task of Upcoming;track $index){
+                        <li>
+                          <div class="d-flex align-items-start gap-2 flex-wrap">
+                            <div class="mb-3 form-check">
+                              <input type="checkbox" class="form-check-input" [checked]="task.completed">
+                            </div>
+                            <div class="flex-fill">
+                              <div class="d-flex align-items-center gap-2 mb-1">
+                                <a href="javascript:void(0);" class="crm-task-name">{{task.title}}</a>
+                                <span class="avatar avatar-xs avatar-rounded bg-light border text-muted fw-semibold"
+                                  data-bs-toggle="tooltip" ngbTooltip="Not Started" data-bs-original-title="Not Started">
+                                  <i class="ti ti-info-circle fs-11"></i>
+                                </span>
+                              </div>
+                              <div class="d-flex align-items-center gap-2 lh-1">
+                                <a href="javascript:void(0);" class="fs-12">{{task.code}}</a>
+                                <div class="vr"></div>
+                                <span class="text-muted mb-0 fs-12"><i class="ti ti-user me-1 fw-medium"></i>{{task.assignee}}</span>
+                                <div class="vr"></div>
+                                <span class="badge "  [ngClass]="{
+                                  'bg-danger-transparent': task.priority === 'High',
+                                  'bg-warning-transparent': task.priority === 'Medium',
+                                  'bg-success-transparent': task.priority !== 'High' && task.priority !== 'Medium'
+                                }">{{task.priority}}</span>
+                              </div>
+                            </div>
+                            <div class="text-end">
+                              <span class="d-block fw-medium">{{task.dueDate}}</span>
+                              <span class="d-block fs-12 text-muted">Due Date</span>
+                            </div>
+                          </div>
+                        </li>
+                      }
+                    </ul>
+                  </ng-template>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body todo-tab p-0 custom-crm-tab">
+            <div class="tab-content" [ngbNavOutlet]="nav"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12">
+        <div class="card custom-card">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between flex-wrap">
+              <div class="lead-title total">Total Leads</div>
+              <div class="lead-title target">Leads Target</div>
+            </div>
+            <div class="progress-stacked progress-animate progress-sm my-3">
+              <div class="progress-bar" role="progressbar" style="width: 68%" aria-valuenow="68" aria-valuemin="0"
+                aria-valuemax="100"></div>
+              <div class="progress-bar bg-success" role="progressbar" style="width: 32%" aria-valuenow="32"
+                aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <div class="d-flex align-items-center gap-3 justify-content-between flex-wrap">
+              <div><span class="text-success fw-medium me-2"><i class="ti ti-arrow-up me-1"></i>3.25%</span> Compared to
+                last week</div>
+              <div><a href="javascript:void(0);" class="link-primary text-decoration-underline">Leads Report <i
+                    class="ti ti-arrow-narrow-right"></i></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-3">
+    <div class="card custom-card overflow-hidden">
+      <div class="card-header">
+        <div class="card-title">
+          Leads By Source
+        </div>
+      </div>
+      <div class="card-body mx-auto text-center">
+        <div id="leads-source">
+          <spk-apexcharts [chartOptions]="LeadOptions"></spk-apexcharts>
+        </div>
+      </div>
+      <div class="card-footer p-0">
+        <ul class="list-group list-group-flush leads-source-list">
+          @for(source of TrafficSources;track $index){
+            <li class="list-group-item">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="fw-semibold">{{source.name}}</div>
+                <div class="lh-1 text-end">
+                  <span class="d-block fw-semibold mb-0"><span
+                      class=" d-inline-flex align-items-center fw-medium me-2 fs-12" [ngClass]="source.trend === 'up' ? 'text-success' : 'text-danger'"><i
+                        class="ti ti-arrow-{{source.trend}} me-1"></i>{{source.percentage}}</span>{{source.count.toLocaleString()}}</span>
+                </div>
+              </div>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End:: row-1 -->
+
+<!-- Start:: row-2 -->
+<div class="row">
+  <div class="col-xxl-3">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">
+          Top Deals
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled crm-top-deals">
+          @for(user of Deals;track $index){
+            <li>
+              <div class="d-flex align-items-top flex-wrap">
+                <div class="me-2">
+                  <span class="avatar avatar-sm avatar-rounded bg-primary-transparent fw-semibold">
+                    @if(user.avatar){
+                      <img [src]="user.avatar" alt={{user.name}}>
+                    }
+                    @else{
+                      {{user.initials}}
+                    }
+                  </span>
+                </div>
+                <div class="flex-fill">
+                  <p class="fw-semibold mb-0">{{user.name}}</p>
+                  <span class="text-muted fs-12">{{user.email}}</span>
+                </div>
+                <div class="fw-semibold fs-15">{{user.amount}}</div>
+              </div>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-3">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">
+          Deals Statistics
+        </div>
+      </div>
+      <div class="card-body py-0">
+        <div id="deals-statistics">
+          <spk-apexcharts [chartOptions]="StaticOptions"></spk-apexcharts>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-6">
+    <div class="card custom-card overflow-hidden">
+      <div class="card-header">
+        <div class="card-title">
+          Leads Overview
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <spk-reusable-tables [columns]="CrmColumn" tableClass="  text-nowrap" [showCheckbox]="false">
+            @for(lead of Overviewtable;track $index){
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <div class="lh-1">
+                      <span class="avatar avatar-sm avatar-rounded">
+                        <img [src]="lead.avatar" alt={{lead.name}}>
+                      </span>
+                    </div>
+                    <div>{{lead.name}}</div>
+                  </div>
+                </td>
+                <td>{{lead.company}}</td>
+                <td>
+                  <span class="badge {{lead.status.colorClass}}">{{lead.status.label}}</span>
+                </td>
+                <td>{{lead.source}}</td>
+              </tr>
+            }
+            </spk-reusable-tables>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End:: row-2 -->
+
+<!-- Start:: row-3 -->
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card custom-card overflow-hidden">
+      <div class="card-header">
+        <div class="card-title">
+          Top Deals
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <spk-reusable-tables [columns]="TopDealsColumn" tableClass="  text-nowrap" [showCheckbox]="false">
+            @for(deal of TopdealsTable;track $index){
+              <tr>
+                <td [ngClass]="{'border-bottom-0': $index === TopdealsTable.length - 1}"><a href="javascript:void(0);">{{deal.id}}</a></td>
+                <td [ngClass]="{'border-bottom-0': $index === TopdealsTable.length - 1}">{{deal.title}}</td>
+                <td [ngClass]="{'border-bottom-0': $index === TopdealsTable.length - 1}">
+                  <div class="d-flex align-items-center gap-2 position-relative">
+                    <a href="javascript:void(0);" class="stretched-link"></a>
+                    <div class="lh-1">
+                      <span class="avatar avatar-sm avatar-rounded">
+                        <img [src]="deal.companyLogo" alt={{deal.companyName}}>
+                      </span>
+                    </div>
+                    <div>{{deal.companyName}}</div>
+                  </div>
+                </td>
+                <td [ngClass]="{'border-bottom-0': $index === TopdealsTable.length - 1}">{{deal.amount}}</td>
+                <td [ngClass]="{'border-bottom-0': $index === TopdealsTable.length - 1}"><span class="badge {{deal.status.colorClass}}">{{deal.status.label}}</span></td>
+                <td [ngClass]="{'border-bottom-0': $index === TopdealsTable.length - 1}">{{deal.closeDate}}</td>
+                <td [ngClass]="{'border-bottom-0': $index === TopdealsTable.length - 1}">{{deal.owner}}</td>
+                <td [ngClass]="{'border-bottom-0': $index === TopdealsTable.length - 1}">{{deal.priority}}</td>
+                <td [ngClass]="{'border-bottom-0': $index === TopdealsTable.length - 1}">
+                  <div class="btn-list">
+                    <button class="btn btn-icon btn-primary-light btn-sm">
+                      <i class="ti ti-edit"></i>
+                    </button>
+                    <button class="btn btn-icon btn-danger-light btn-sm">
+                      <i class="ti ti-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </spk-reusable-tables>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <div class="d-flex align-items-center flex-wrap">
+            <div> Showing 6 Entries <i class="bi bi-arrow-right ms-2 fw-semibold"></i> </div>
+            <div class="ms-auto">
+                <nav aria-label="Page navigation" class="pagination-style-2">
+                    <ul class="pagination mb-0 flex-wrap">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="javascript:void(0);">
+                                Prev
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+                        <li class="page-item active"><a class="page-link" href="javascript:void(0);">2</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="javascript:void(0);">
+                                <i class="bi bi-three-dots"></i>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="javascript:void(0);">17</a></li>
+                        <li class="page-item">
+                            <a class="page-link text-primary" href="javascript:void(0);">
+                                next
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>
+<!-- End:: row-3 -->

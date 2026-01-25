@@ -1,0 +1,10 @@
+<div class="card custom-card border-0 blog-card shadow-none">
+  <div class="card-body p-0">
+      <a [routerLink]="['/pages/blog/blogdetails']" class="stretched-link"></a>
+      <div class="blog-image mb-3">
+          <img [src]="blog().image" class="card-img" alt="...">
+      </div>
+      <span class="d-block mb-1 text-primary blog-category">{{blog().title}}</span>
+      <h6 class="mb-0 blog-title lh-base">{{blog().desc}}</h6>
+  </div>
+</div>

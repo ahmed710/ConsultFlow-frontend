@@ -1,0 +1,32 @@
+<div class="card custom-card">
+  <div class="card-header">
+      <div class="card-title">
+        {{wallet().title}}
+      </div>
+  </div>
+  <div class="card-body">
+      <div class="d-flex align-items-center justify-content-between gap-2">
+          <div class="d-flex align-items-center gap-2">
+              <div class="lh-1">
+                  <span class="avatar avatar-rounded">
+                      <img [src]="wallet().imgSrc" alt={{wallet().title}}>
+                  </span>
+              </div>
+              <div>
+                <span class="d-block text-muted fs-12 fw-normal">{{wallet().available}}</span>
+                <span class="fw-medium">{{wallet().value}}</span>
+              </div>
+          </div>
+          <div>
+              <span class="fw-medium">{{wallet().price}}</span>
+              <span class="d-block text-muted fs-12 fw-normal">In USD</span>
+          </div>
+      </div>
+  </div>
+  <div class="card-footer">
+      <div class="btn-list text-center">
+          <button class="btn btn-primary btn-w-lg btn-wave">Deposit</button>
+          <button class="btn btn-danger btn-w-lg btn-wave">Withdraw</button>
+      </div>
+  </div>
+</div>

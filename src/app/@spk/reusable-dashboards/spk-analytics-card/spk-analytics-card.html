@@ -1,0 +1,23 @@
+
+    <div class="card custom-card">
+      <div class="card-body">
+        <div class="d-flex align-items-start gap-3">
+          <div>
+            <span class="avatar" [ngClass]="colorClass()" [innerHTML]="getSanitizedSVG(iconSvg() || '')">
+            </span>
+          </div>
+          <div>
+            <span class="d-block text-muted">{{ title() }}</span>
+            <h5 class="fw-semibold mb-1">{{ value() }}</h5>
+            <div class="text-muted fs-12">
+              <span [ngClass]="{ 'text-success': changeType() === 'up', 'text-danger': changeType() === 'down' }">
+                <i class="me-1 ti ti-arrow-narrow-{{changeType()}}"></i>
+                {{ percentageChange() }}
+              </span>
+              {{ period() }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+

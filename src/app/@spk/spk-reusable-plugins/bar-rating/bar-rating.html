@@ -1,0 +1,30 @@
+<ng-template #defaultStar let-fill="fill">
+  <span class="star" [class.full]="fill >= 100">
+    <!-- Handle fractional (half) stars -->
+    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+  </span>
+</ng-template>
+
+<ngb-rating
+  [(rate)]="currentRate"
+  [starTemplate]="starTemplate() || defaultStar"
+  (hover)="onHover($event)" (leave)="onLeave()"
+  [max]="maxStars()"
+  [formControl]="control()"
+  [readonly]="readonly()"
+  (rateChange)="onRateChange($event)">
+</ngb-rating>
+
+<!-- <ngb-rating
+[(rate)]="currentRate"
+(hover)="onHover($event)"
+(hover)="onHover($event)" (leave)="onLeave()" [readonly]="readonly"
+[readonly]="readonly"
+[starTemplate]="starTemplate"
+[max]="maxStars"
+class="ng-rating"
+[formControl]="control"
+(rateChange)="onRateChange($event)"
+>
+<ng-content></ng-content>
+</ngb-rating> -->

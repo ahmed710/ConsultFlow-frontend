@@ -1,0 +1,399 @@
+<app-breadcrumb title="Dashboards" [subtitle]="false" active_item="Analytics"></app-breadcrumb><!-- breadcrumb -->
+<!-- Start:: row-1 -->
+<div class="row">
+  <div class="col-xxl-9">
+    <div class="row">
+      @for (stat of stats; track $index) {
+      <div class="col-xxl-3 col-lg-6">
+        <spk-analytics-card [iconSvg]="stat.iconSvg" [title]="stat.title" [value]="stat.value"
+          [percentageChange]="stat.percentageChange" [changeType]="stat.changeType" [period]="stat.period"
+          [colorClass]="stat.colorClass"></spk-analytics-card>
+      </div>
+      }
+      <div class="col-xxl-4">
+        <div class="card custom-card">
+          <div class="card-header justify-content-between">
+            <div class="card-title">
+              Sessions By Device
+            </div>
+            <spk-dropdowns [Customclass]="'dropdown'" [title]="'View All'" [Icon]="true"
+              [IconClass]="'ri-arrow-down-s-line align-middle ms-1 d-inline-block'"
+              [class]="' fs-12 text-muted border-0 no-caret p-0'" [Menuclass]="'dropdown-menu'">
+              <li><a class="dropdown-item" href="javascript:void(0);">Day</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0);">Month</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0);">Year</a></li>
+            </spk-dropdowns>
+
+          </div>
+          <div class="card-body mx-auto">
+            <div id="sessions-device">
+              <spk-apexcharts [chartOptions]="SessionDeviceData"></spk-apexcharts>
+            </div>
+          </div>
+          <div class="card-footer p-0">
+            <div class="row">
+              <div class="col">
+                <div class="p-3 text-center border-end">
+                  <h5 class="fw-semibold mb-1">1,754</h5>
+                  <span class="fs-12 d-block">Mobile</span>
+                </div>
+              </div>
+              <div class="col">
+                <div class="p-3 text-center border-end custom-border-end">
+                  <h5 class="fw-semibold mb-1">1,234</h5>
+                  <span class="fs-12 d-block">Tablet</span>
+                </div>
+              </div>
+              <div class="col">
+                <div class="p-3 text-center">
+                  <h5 class="fw-semibold mb-1">878</h5>
+                  <span class="fs-12 d-block">Desktop</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xxl-8">
+        <div class="card custom-card">
+          <div class="card-header">
+            <div class="card-title">
+              Audience Metrics
+            </div>
+          </div>
+          <div class="card-body">
+            <div id="audience-metrics">
+              <spk-apexcharts [chartOptions]="MetricsData"></spk-apexcharts>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xxl-4">
+        <div class="card custom-card overflow-hidden">
+          <div class="card-header">
+            <div class="card-title">
+              Visitors By Countries
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <spk-reusable-tables [columns]="CountriesHeader" tableClass="table text-nowrap analytics-visitor-countries-table" [showCheckbox]="false">
+                @for (country of countries; track $index) {
+                <tr>
+                  <td class="border-bottom-0">{{ country.rank }}</td>
+                  <td class="border-bottom-0">
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="lh-1">
+                        <span class="avatar avatar-xs">
+                          <img [src]="country.flagUrl" alt="flag">
+                        </span>
+                      </div>
+                      <div class="fw-semibold">{{ country.name }}</div>
+                    </div>
+                  </td>
+                  <td class="border-bottom-0 ">
+                    <span class="fs-12 text-muted me-2">
+                       (<i [ngClass]="{
+                                                'ti-arrow-up text-success ': country.changeType === 'up',
+                                                'ti-arrow-down text-danger ': country.changeType === 'down'
+                                              }" class="align-middle fs-16  ti "></i>{{ country.percentageChange }})
+                    </span>
+                    {{ country.value }}
+                  </td>
+                </tr>
+                }
+              </spk-reusable-tables>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xxl-8">
+        <div class="card custom-card overflow-hidden">
+          <div class="card-header justify-content-between">
+            <div class="card-title">
+              Top Campaigns
+            </div>
+            <spk-dropdowns [Customclass]="'dropdown'" [Icon]="true" [title]="'View All'"
+              [IconClass]="'ri-arrow-down-s-line align-middle ms-1 d-inline-block'"
+              [class]="'p-0 fs-12 border-0 text-muted tag-link no-caret'" [Menuclass]="'dropdown-menu'">
+              <li><a class="dropdown-item" href="javascript:void(0);">Download</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0);">Import</a></li>
+              <li><a class="dropdown-item" href="javascript:void(0);">Export</a></li>
+            </spk-dropdowns>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive campaigntable custom-sale-table">
+              <spk-reusable-tables [columns]="CampaignsHeader" tableClass="table text-nowrap top-campaigns-table" [showCheckbox]="false">
+                @for (influencer of influencers; track $index) {
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center lh-1">
+                      <span class="avatar avatar-sm p-1 bg-light me-2">
+                        <img [src]="influencer.avatarUrl" alt="img">
+                      </span>
+                      <div>
+                        <p class="fw-medium mb-1">{{ influencer.name }}</p>
+                        <span class="fs-12 text-muted">{{ influencer.role }}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    {{ influencer.totalEarnings }}
+                  </td>
+                  <td>
+                    <span class="text-{{influencer.percentageColor}}">
+                      {{ influencer.percentageChange }}
+                    </span>
+                  </td>
+                  <td>
+                    <span class="badge" [ngClass]="{
+                                            'bg-info-transparent': influencer.status === 'On Process',
+                                            'bg-success-transparent': influencer.status === 'Achieved'
+                                          }">
+                      {{ influencer.status }}
+                    </span>
+                  </td>
+                  <td class="text-end">
+                    <div class="btn-list">
+                      <a href="javascript:void(0);" class="btn btn-light btn-icon btn-sm" data-bs-toggle="tooltip"
+                      ngbTooltip="Edit" aria-label="Edit">
+                        <i class="bi bi-pencil-square"></i>
+                      </a>
+                      <a href="javascript:void(0);" class="btn btn-light btn-icon btn-sm" data-bs-toggle="tooltip"
+                      ngbTooltip="Delete" aria-label="Delete">
+                        <i class="bi bi-trash"></i>
+                      </a>
+                    </div>
+                  </td>
+                </tr>
+                }
+              </spk-reusable-tables>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12">
+        <div class="card custom-card">
+          <div class="card-header justify-content-between">
+            <div class="card-title">
+              Engagement Metrics
+            </div>
+            <div class="d-flex flex-wrap gap-2">
+              <div>
+                <input class="form-control form-control-sm" type="text" placeholder="Search Here"
+                  aria-label=".form-control-sm example">
+              </div>
+              <spk-dropdowns [Customclass]="'dropdown'" [Icon]="true" [title]="'Sort By'"
+                [IconClass]="'ri-arrow-down-s-line align-middle ms-1 d-inline-block'"
+                [class]="'btn btn-primary btn-sm btn-wave waves-effect waves-light no-caret'"
+                [Menuclass]="'dropdown-menu'">
+                <li><a class="dropdown-item" href="javascript:void(0);">New</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0);">Popular</a></li>
+                <li><a class="dropdown-item" href="javascript:void(0);">Relevant</a></li>
+              </spk-dropdowns>
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <spk-reusable-tables [columns]="EngagementHeader" tableClass="table text-nowrap" [showCheckbox]="false">
+                @for (user of users; track $index) {
+                <tr>
+                  <td class="text-center">{{ user.rank }}</td>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="lh-1">
+                        <span class="avatar avatar-sm avatar-rounded">
+                          <img [src]="user.avatarUrl" alt="user-avatar">
+                        </span>
+                      </div>
+                      <div>
+                        {{ user.name }}
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{ user.totalSales }}</td>
+
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="lh-1">
+                        <span class="avatar avatar-xs avatar-rounded">
+                          <img [src]="user.countryFlagUrl" alt="country-flag">
+                        </span>
+                      </div>
+                      <div>
+                        {{ user.country }}
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{ user.pageView }}</td>
+                  <td>{{ user.salesPercentage }}</td>
+                  <td class="text-center">{{ user.returnPercentage }}</td>
+                </tr>
+                }
+              </spk-reusable-tables>
+            </div>
+          </div>
+          <div class="card-footer ">
+            <div class="d-flex align-items-center flex-wrap">
+              <div> Showing 5 Entries <i class="bi bi-arrow-right ms-2 fw-semibold"></i> </div>
+              <div class="ms-auto">
+                <nav aria-label="Page navigation" class="pagination-style-4">
+                  <ul class="pagination mb-0">
+                    <li class="page-item disabled"><a class="page-link" href="javascript:void(0);"> Prev </a> </li>
+                    <li class="page-item active"><a class="page-link" href="javascript:void(0);">1</a></li>
+                    <li class="page-item"><a class="page-link" href="javascript:void(0);">2</a></li>
+                    <li class="page-item"> <a class="page-link text-primary" href="javascript:void(0);"> next </a> </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-3">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="card custom-card overflow-hidden">
+          <div class="card-header">
+            <div class="card-title">
+              Browser Insights
+            </div>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled browser-insights-list">
+              @for (browser of browsers; track $index) {
+              <li>
+                <div class="d-flex align-items-start gap-3">
+                  <div class="lh-1">
+                    <span class="avatar avatar-sm avatar-rounded">
+                      <img [src]="browser.avatarUrl" alt="browser-icon">
+                    </span>
+                  </div>
+                  <div class="flex-fill">
+                    <span class="fw-medium">{{ browser.name }}</span>
+                    <span class="d-block text-muted fs-12">{{ browser.company }}</span>
+                  </div>
+                  <div class="text-end w-25">
+                    <span class="d-block mb-1 fw-semibold">
+                      {{ browser.totalCount }}
+                    </span>
+                    <div class="progress progress-animate progress-xs w-75 ms-auto">
+                      <div class="progress-bar" [ngClass]="browser.progressColor" role="progressbar"
+                        [style.width.%]="browser.progressValue" aria-valuenow="browser.progressValue" aria-valuemin="0"
+                        aria-valuemax="100">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12">
+        <div class="card custom-card">
+          <div class="card-header justify-content-between">
+            <div class="card-title">
+              Users By Time Of Week
+            </div>
+          </div>
+          <div class="card-body p-0">
+            <div id="users-by-time">
+              <spk-apexcharts [chartOptions]="WeekData"></spk-apexcharts>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12">
+        <div class="card custom-card">
+          <div class="card-header">
+            <div class="card-title">
+              Top Referral Pages
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="d-flex align-items-center mb-3 flex-wrap">
+              <h4 class="fw-bold mb-0">4,289</h4>
+              <div class="ms-2">
+                <span class="badge bg-success-transparent">1.02<i
+                    class="ri-arrow-up-s-fill align-mmiddle ms-1"></i></span>
+                <span class="text-muted ms-1 text-nowrap">compared to last week</span>
+              </div>
+            </div>
+            <div class="progress-stacked progress-animate progress-sm mb-4">
+              <div class="progress-bar" role="progressbar" style="width: 21%" aria-valuenow="21" aria-valuemin="0"
+                aria-valuemax="100"></div>
+              <div class="progress-bar bg-info" role="progressbar" style="width: 26%" aria-valuenow="26"
+                aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-warning" role="progressbar" style="width: 35%" aria-valuenow="35"
+                aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar bg-success" role="progressbar" style="width: 18%" aria-valuenow="18"
+                aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <ul class="list-unstyled mb-0 pt-2 top-referral-pages">
+              <li class="primary">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>blog/how-to-improve-seo</div>
+                  <div class="fs-12 text-muted">1,250</div>
+                </div>
+              </li>
+              <li class="info">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>products/new-launch</div>
+                  <div class="fs-12 text-muted">1,100</div>
+                </div>
+              </li>
+              <li class="warning">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>services/digital-marketing</div>
+                  <div class="fs-12 text-muted">950</div>
+                </div>
+              </li>
+              <li class="success">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>pricing</div>
+                  <div class="fs-12 text-muted">890</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12">
+        <div class="card custom-card">
+          <div class="card-header">
+            <div class="card-title">
+              Average Sessions
+            </div>
+          </div>
+          <div class="card-body pb-0">
+            <div class="d-flex gap-3 flex-wrap align-items-center mb-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32px" height="32px"
+                class="text-primary bg-primary-transparent rounded-1 px-1" viewBox="0 0 24 24">
+                <g fill="currentColor">
+                  <path fill-opacity="0.5" d="M8 13h6v4H8z"></path>
+                  <path d="M6 6H4v12h2zm14 1H8v4h12z"></path>
+                </g>
+              </svg>
+              <div>
+                <h6 class="fw-medium mb-0">3m 45s</h6>
+              </div>
+              <div class="ms-auto text-muted fs-11 text-end">
+                <div class="fw-medium">From Last Week</div>
+                <span class="text-success fw-semibold"> 1.25% <i
+                    class="ri-arrow-up-line lh-1 align-center fs-14 fw-normal"></i></span>
+              </div>
+            </div>
+            <div id="analytics-avgsession">
+              <spk-apexcharts [chartOptions]="AverageData"></spk-apexcharts>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End:: row-1 -->

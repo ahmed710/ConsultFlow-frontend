@@ -1,0 +1,24 @@
+<div class="card custom-card {{price().cardClass}}">
+  <div class="card-body p-4 text-center">
+      <h5 class="fw-semibold mb-3 {{price().titleColor}}">{{price().title}}</h5>
+      <div class="d-flex align-items-end justify-content-center gap-1 mb-4">
+          <h2 class="fw-semibold mb-0 lh-1 text-{{price().priceColor}}">{{price().price}}</h2>
+          <span class="fs-13 ">/ {{price().year}}</span>
+      </div>
+      <ul class="list-unstyled pricing-features-list-1 mx-5 text-start mb-4">
+        @for(item of price().features;track $index){
+        <li>
+          @if (isString(item)) {
+            {{item}}
+            }
+        </li>
+      }
+      </ul>
+      <div>
+          <span class="badge bg-{{price().badgeColor}}-transparent py-1 px-3 fs-13 rounded-pill fw-normal">{{price().percent}} Off</span>
+          <div class="d-grid mt-3">
+              <button class="btn btn-{{price().btnColor}} btn-lg">Choose Plan</button>
+          </div>
+      </div>
+  </div>
+</div>

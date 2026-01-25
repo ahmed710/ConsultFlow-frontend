@@ -1,0 +1,251 @@
+::ng-deep{
+    .badge{
+        font-size: 0.6rem !important;
+    }
+    .leftmenu-light .Light-mode .main-logo, .leftmenu-light .Light-mode .logo-1, .leftmenu-light .Light-mode .desktop-logo.active.logo-light,
+    .theme-style .Light-mode .main-logo, .theme-style .Light-mode .logo-1, .theme-style .Light-mode .desktop-logo.active.logo-light
+    {
+      display :block !important;
+        left: 0 !important;
+    }
+    .theme-style .Light-mode .main-logo.dark-theme{
+      display:none !important;
+    }
+    @media (min-width: 768px){
+        .leftbgimage1 .sidebar-mini.sidenav-toggled .app-sidebar:before,
+        .leftbgimage2 .sidebar-mini.sidenav-toggled .app-sidebar:before,
+        .leftbgimage3 .sidebar-mini.sidenav-toggled .app-sidebar:before,
+        .leftbgimage4 .sidebar-mini.sidenav-toggled .app-sidebar:before,
+        .leftbgimage5 .sidebar-mini.sidenav-toggled .app-sidebar:before
+        {
+            width: 80px !important;
+        }
+
+        .sidebar-mini.sidenav-toggled .main-sidebar-header {
+            width: 80px;
+        }
+
+        .leftmenu-color.leftbgimage1 .sidebar-mini.sidenav-toggled .app-sidebar,
+        .leftmenu-color.leftbgimage2 .sidebar-mini.sidenav-toggled .app-sidebar,
+        .leftmenu-color.leftbgimage3 .sidebar-mini.sidenav-toggled .app-sidebar
+        {
+            width: 80px !important;
+        }
+
+         .sidebar-mini.sidenav-toggled .main-sidebar-header .logo-icon.icon-light {
+          display   :none !important;
+        }
+        .leftmenu-light .sidebar-mini.sidenav-toggled .main-sidebar-header .logo-icon.icon-dark {
+          display  :none !important;
+        }
+        .leftmenu-light .sidebar-mini.sidenav-toggled .main-sidebar-header .logo-icon.icon-light {
+          display  :    block !important;
+        }
+
+        .sidenav-toggled .me-16{
+            margin-right: 0px;
+            right: 6px !important;
+            top: 12px !important;
+        }
+    }
+    .sub-slide.is-expanded .sub-slide-menu .sub-slide-menu {
+      display  :none !important;
+    }
+
+    .sub-slide.is-expanded .sub-slide-menu .sub-slide-menu.show {
+      display  :block !important;
+    }
+
+    .slide.is-expanded .angle.fe.fe-chevron-down{
+        transform: rotate(-180deg);
+    }
+    .sub-slide.is-expanded .angle.fe.fe-chevron-right{
+        transform: rotate(-90deg);
+    }
+    .me-16{
+        margin-right: 16px;
+    }
+
+
+    .theme-style .main-logo{
+      display   :none !important;
+    }
+
+    .leftmenu-light .slide-item.active, .leftmenu-light .slide-item:hover, .leftmenu-light .slide-item:focus{
+        color: #000 !important;
+    }
+    .theme-style .slide-item.active, .theme-style .slide-item:hover, .theme-style .slide-item:focus{
+        color: #4d4c50 !important;
+    }
+    .theme-style .slide-item.active, .theme-style .slide-item:hover, .theme-style .slide-item:focus,
+    .leftmenu-light .slide-item.active, .leftmenu-light .slide-item:hover, .leftmenu-light .slide-item:focus{
+        color: #5965f9 !important;
+    }
+    .theme-style .side-menu h3 {
+        color: #838498 !important;
+    }
+    .theme-style .header-icon,
+    .theme-style .main-header-right .navbar-toggler-icon{
+        color: #000 !important;
+    }
+    .theme-style .ti-search,
+    .theme-style .main-header-message i,
+    .theme-style .main-header-notification i,
+      .theme-style .nav-item.full-screen i{
+        color: #404259 !important;
+    }
+
+
+
+    @media (min-width: 768px){
+        .sidebar-mini.sidenav-toggled.sidenav-toggled-open .app-sidebar {
+            left: 0;
+            width: 240px !important;
+            overflow: hidden;
+        }
+
+        .sidebar-mini.sidenav-toggled.sidenav-toggled-open .main-sidebar-header {
+            width: 240px;
+        }
+
+        .sidenav-toggled.sidenav-toggled-open .side-menu h3 {
+          display   :block;
+        }
+
+        .sidebar-mini.sidenav-toggled.sidenav-toggled-open .side-menu .slide .side-menu__item {
+            padding: 12px 14px !important;
+            margin: 2px 0 !important;
+        }
+
+        .sidebar-mini.sidenav-toggled.sidenav-toggled-open .side-menu__icon {
+            /* margin-right: 0; */
+            /* margin: 0 auto; */
+        }
+        .sidebar-mini.sidenav-toggled.sidenav-toggled-open .side-menu__label {
+          display  : initial !important;
+            position: initial !important;
+            padding: 0;
+            min-width:100%;;;;
+            margin: initial !important;
+            left: initial !important;
+            color: rgba(255, 255, 255, 0.8);
+            opacity: 1;
+            background: transparent;
+            font-size: 0.875rem !important;
+            box-shadow: none;
+        }
+
+        .sidebar-mini.sidenav-toggled.sidenav-toggled-open .slide-menu {
+            position: relative !important;
+            left: 0px;
+            min-width: 180px;
+            padding: 0;
+            opacity: 1;
+            border-bottom-right-radius: 43px;
+            z-index: 9;
+            /* visibility: visible; */
+            /* :block; */
+        }
+
+        .sidebar-mini.sidenav-toggled.sidenav-toggled-open .slide.is-expanded .slide-menu {
+            position: relative;
+            display:block !important;
+            visibility:  visible !important;
+        }
+        .sidebar-mini.sidenav-toggled.sidenav-toggled-open .angle {
+          display     :block !important;
+            position:absolute !important;
+            right: 0 !important;
+        }
+
+        .sidebar-mini.sidenav-toggled.sidenav-toggled-open .side-badge {
+            right: 0 !important;
+            position: absolute !important;
+            top: 12px !important;
+        }
+
+        .sidebar-mini.sidenav-toggled.sidenav-toggled-open .me-16{
+            margin-right: 16px !important;
+        }
+
+        .sidebar-mini.sidenav-toggled.sidenav-toggled-open .main-sidebar-header .logo-icon {
+          display    :none !important;
+        }
+
+        .sidebar-mini.sidenav-toggled.sidenav-toggled-open .main-sidebar-header .main-logo {
+          display  :none !important;
+        }
+        .sidebar-mini.sidenav-toggled.sidenav-toggled-open .main-sidebar-header .main-logo.dark-theme {
+          display  :block !important;
+        }
+
+        .leftmenu-light .main-logo.dark-theme{
+          display  :none !important;
+        }
+        .leftmenu-light .main-logo{
+          display :block !important;
+        }
+
+        .leftmenu-light .sidebar-mini.sidenav-toggled .main-logo{
+          display    :none !important;
+        }
+        .leftbgimage1 .sidebar-mini.sidenav-toggled.sidenav-toggled-open .app-sidebar:before,
+        .leftbgimage2 .sidebar-mini.sidenav-toggled.sidenav-toggled-open .app-sidebar:before,
+        .leftbgimage3 .sidebar-mini.sidenav-toggled.sidenav-toggled-open .app-sidebar:before,
+        .leftbgimage4 .sidebar-mini.sidenav-toggled.sidenav-toggled-open .app-sidebar:before,
+        .leftbgimage5 .sidebar-mini.sidenav-toggled.sidenav-toggled-open .app-sidebar:before
+        {
+            width: 240px !important;
+        }
+
+        .sidebar-mini.sidenav-toggled.sidenav-toggled-open .main-sidebar-header {
+            width: 240px;
+        }
+
+        .leftmenu-color.leftbgimage1 .sidebar-mini.sidenav-toggled.sidenav-toggled-open .app-sidebar,
+        .leftmenu-color.leftbgimage2 .sidebar-mini.sidenav-toggled.sidenav-toggled-open .app-sidebar,
+        .leftmenu-color.leftbgimage3 .sidebar-mini.sidenav-toggled.sidenav-toggled-open .app-sidebar
+        {
+            width: 240px !important;
+        }
+        .leftmenu-light .sidebar-mini.sidenav-toggled.sidenav-toggled-open .main-sidebar-header .main-logo {
+          display :block !important;
+            left: 50% !important;
+        }
+        .theme-style .sidebar-mini.sidenav-toggled.sidenav-toggled-open .main-sidebar-header .main-logo {
+          display :block !important;
+            left: 50% !important;
+        }
+
+        .theme-style .sidebar-mini .main-sidebar-header .desktop-logo.logo-light .main-logo {
+          display :block !important;
+            left: 50% !important;
+        }
+        .theme-style .sidebar-mini.sidenav-toggled.sidenav-toggled-open .main-sidebar-header .desktop-logo.logo-light .main-logo {
+          display  :block !important;
+            left: 50% !important;
+        }
+        .theme-style .sidebar-mini.sidenav-toggled .main-sidebar-header .desktop-logo.logo-light .main-logo {
+          display :none !important;
+        }
+
+        .theme-style .sidebar-mini .main-sidebar-header .desktop-logo.logo-dark .main-logo {
+          display  :none !important;
+        }
+        .theme-style .sidebar-mini.sidenav-toggled.sidenav-toggled-open .main-sidebar-header .desktop-logo.logo-dark .main-logo {
+          display  :none !important;
+        }
+        .leftmenu-light .main-logo, .leftmenu-light .logo-1, .leftmenu-light .desktop-logo.active.logo-light{
+            left: 50% !important;
+        }
+    }
+
+}
+.angle.fe.fe-chevron-down{
+    margin-top: -2px !important;
+}
+
+.sub-slide.is-expanded .sub-side-menu__item.active {
+  color: #fff !important;
+}
+

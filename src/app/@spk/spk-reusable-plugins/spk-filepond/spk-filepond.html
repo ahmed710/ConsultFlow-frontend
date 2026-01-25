@@ -1,0 +1,4 @@
+<file-pond #myPond [options]="pondOptions" class="{{mainClass()}}" [files]="pondFiles"
+(oninit)="pondHandleInit()" (onaddfile)="pondHandleAddFile($event)"
+(onactivatefile)="pondHandleActivateFile($event)">
+</file-pond>

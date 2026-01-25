@@ -1,0 +1,31 @@
+
+    <div class="card custom-card dashboard-main-card">
+      <div class="card-body">
+        <div class="d-flex align-items-start gap-2 flex-wrap">
+          <div class="lh-1">
+            <span class="avatar avatar-md avatar-rounded" [ngClass]="backgroundClass()">
+              <i [innerHTML]="getSanitizedSVG(icon() || '')"></i>
+            </span>
+          </div>
+          <div class="flex-fill">
+            <div class="d-flex align-items-end justify-content-between">
+              <span class="d-block mb-1">{{ title() }}</span>
+              <spk-dropdowns [Customclass]="'dropdown'" [Icon]="true" [IconClass]="'ti ti-dots text-muted fs-5'" [placement]="'bottom-end'"
+              [class]="'btn btn-icon btn-sm rounded-circle btn-light no-caret'" [Menuclass]="'dropdown-menu'">
+                  <li><a class="dropdown-item" href="javascript:void(0);">Today</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0);">This Week</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0);">This Month</a></li>
+                  <li><a class="dropdown-item" href="javascript:void(0);">This Year</a></li>
+              </spk-dropdowns>
+            </div>
+            <div class="d-flex align-items-end justify-content-between flex-wrap">
+              <h4 class="fw-semibold mb-0">{{ value() }}</h4>
+              <div [ngClass]="statusClass()" class="fs-13">
+                <i class="ti" [ngClass]="statusClass() === 'text-success' ? 'ti-arrow-up' : 'ti-arrow-down'"></i>{{ percentage() }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+

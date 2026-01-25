@@ -1,0 +1,117 @@
+<app-breadcrumb title="Dashboards" sub_title="Projects"  active_item="Create Project"></app-breadcrumb>
+
+  <!-- Start::row-1 -->
+  <div class="row">
+    <div class="col-xl-12">
+        <div class="card custom-card">
+            <div class="card-header">
+                <div class="card-title">
+                    Create Project
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row gy-3">
+                    <div class="col-xl-4">
+                        <label for="input-label" class="form-label">Project Name :</label>
+                        <input type="text" class="form-control" id="input-label" placeholder="Enter Project Name">
+                    </div>
+                    <div class="col-xl-4">
+                        <label for="input-label11" class="form-label">Project Manager :</label>
+                        <input type="text" class="form-control" id="input-label11" placeholder="Project Manager Name">
+                    </div>
+                    <div class="col-xl-4">
+                        <label for="input-label1" class="form-label">Client / Stakeholder :</label>
+                        <input type="text" class="form-control" id="input-label1" placeholder="Enter Client Name">
+                    </div>
+                    <div class="col-xl-12">
+                        <label class="form-label">Project Description :</label>
+                        <div id="project-descriptioin-editor">
+                          <quill-editor  id="editor"   >
+                        </quill-editor>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <label class="form-label">Start Date :</label>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-text text-muted"> <i class="ri-calendar-line"></i> </div>
+                                <spk-flatpickr placeholder="Choose Date and Time" class=""
+                                [mode]="'single'" [altInput]="false" [convertModelValue]="true" [enableTime]="true"
+                                [dateFormat]="'Y-m-d H:i'"></spk-flatpickr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <label class="form-label">End Date :</label>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="input-group-text text-muted"> <i class="ri-calendar-line"></i> </div>
+                                <spk-flatpickr placeholder="Choose Date and Time" class=""
+                                [mode]="'single'" [altInput]="false" [convertModelValue]="true" [enableTime]="true"
+                                [dateFormat]="'Y-m-d H:i'"></spk-flatpickr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <label class="form-label">Status :</label>
+                        <spk-ng-select
+                        [options]="StatusSelect"
+                        [id]="'choices-single-default'"
+                        [selectClass]="''"
+                        [clearable]="true"
+                        [searchable]="true"
+                        [hideSelected]="true"
+                        [placeholder]="'Inprogress'"
+                        [additionalProperties]="{}">
+                        </spk-ng-select>
+                    </div>
+                    <div class="col-xl-6">
+                        <label class="form-label">Priority :</label>
+                        <spk-ng-select
+                        [options]="Priority"
+                        [id]="'choices-single-default2'"
+                        [selectClass]="''"
+                        [clearable]="true"
+                        [searchable]="true"
+                        [hideSelected]="true"
+                        [placeholder]="'High'"
+                        [additionalProperties]="{}">
+                        </spk-ng-select>
+                    </div>
+                    <div class="col-xl-6">
+                        <label class="form-label">Assigned To</label>
+                        <spk-ng-select
+                        [options]="AsignSelect"
+                        [id]="'assigned-team-members'"
+                        [selectClass]="''"
+                        [clearable]="true"
+                        [defaultValue]="selectedTags"
+                        [multiple]="true"
+                        [searchable]="true"
+                        [hideSelected]="true"
+                        [placeholder]="'Medium'"
+                        [additionalProperties]="{}">
+                        </spk-ng-select>
+                    </div>
+                    <div class="col-xl-6">
+                        <label class="form-label">Tags</label>
+                        <tag-input [(ngModel)]="Passing" class="border p-1 px-2"  [theme]="'bootstrap'"
+                        [removable]="false">
+             </tag-input>
+                      </div>
+                    <div class="col-xl-12">
+                        <label class="form-label">Attachments</label>
+                        <file-pond #myPond [options]="pondOptions" class="multiple-filepond" name="filepond"
+                        id="file-input" [files]="pondFiles" (oninit)="pondHandleInit()"
+                        (onaddfile)="pondHandleAddFile($event)" (onactivatefile)="pondHandleActivateFile($event)">
+                    </file-pond>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary-light btn-wave ms-auto float-end">Create Project</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End::row-1 -->

@@ -1,0 +1,311 @@
+<app-breadcrumb title="Dashboards" sub_title="Jobs" active_item="Dashboard"></app-breadcrumb>
+
+<!-- Start:: row-1 -->
+<div class="row row-cols-xxl-5">
+  @for (jobs of JobsCards; track $index) {
+  <div class="col">
+    <spk-job-card [job]="jobs"></spk-job-card>
+  </div>
+  }
+</div>
+<!-- End:: row-1 -->
+
+<!-- Start:: row-2 -->
+<div class="row">
+  <div class="col-xxl-6">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">
+          Employees Performance
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="employees-performance">
+          <spk-apexcharts [chartOptions]="JobsEmployeeOptions"></spk-apexcharts>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-3 col-xl-6">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">
+          Recent Activity
+        </div>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled jobs-recent-activity-list">
+          @for (activity of Jobsactivities; track $index) {
+          <li>
+            <div class="d-flex align-items-start gap-3 flex-wrap flex-xxl-nowrap">
+              <div>
+                <span class="avatar avatar-md avatar-rounded">
+                  <img [src]="activity.avatar" alt={{activity.name}}>
+                </span>
+              </div>
+              <div>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="fw-semibold">{{activity.name}}</div>
+                  <span class="badge {{activity.badgeClass}}">{{activity.badgeText}}</span>
+                </div>
+                <div class="fs-13 description mb-1">{{activity.description}}</div>
+                <span class="d-block fs-12 text-muted">{{activity.timestamp}}</span>
+              </div>
+            </div>
+          </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-3 col-xl-6">
+    <div class="card custom-card overflow-hidden">
+      <div class="card-header">
+        <div class="card-title">
+          Candidates Overview
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="candidates-overview">
+          <spk-apexcharts [chartOptions]="JobsOverviewOptions"></spk-apexcharts>
+        </div>
+      </div>
+      <div class="card-footer p-0">
+        <ul class="list-group list-group-flush">
+          @for (stat of GenderStats; track $index) {
+          <li class="list-group-item">
+            <div class="d-flex align-items-center gap-2">
+              <div class="lh-1">
+                <span class="avatar avatar-md "
+                  [ngClass]="(stat.gender === 'Male') ? 'bg-warning-transparent svg-warning' : 'bg-primary-transparent svg-primary'"
+                  [innerHTML]="getSanitizedSVG(stat.icon)"></span>
+              </div>
+              <div class="flex-fill">
+                <span class="fs-13 d-block">{{stat.gender}}</span>
+                <h5 class="fw-semibold mb-0">{{stat.count}}</h5>
+              </div>
+              <div class="text-end">
+                <span class="{{stat.textcolor }}">
+                  <i class="ti" [ngClass]="'ti-arrow-narrow-' + (stat.percentageChange > 0 ? 'up' : 'down') + ' me-1'">
+                  </i>
+                  {{ stat.percentageChange }}%
+                </span>
+                <span class="d-block fs-13 text-muted">This Year</span>
+              </div>
+            </div>
+          </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End:: row-2 -->
+
+<!-- Start:: row-3 -->
+<div class="row">
+  <div class="col-xxl-6">
+    <div class="card custom-card overflow-hidden">
+      <div class="card-header">
+        <div class="card-title">
+          Recently Added Jobs
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive custom-sale-table">
+          <spk-reusable-tables [columns]="AddedJobHeader" tableClass="table text-nowrap" [showCheckbox]="false">
+            @for (job of JobsTable; track $index) {
+              <tr [ngClass]="{'border-bottom-0': $index === JobsRecent.length - 1}">
+                <td [ngClass]="{'border-bottom-0': $index === JobsRecent.length - 1}">
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-sm bg-light avatar-rounded">
+                      <img [src]="job.companyLogo" alt={{job.companyName}}>
+                    </span>
+                    <a href="javascript:void(0);" class="fw-medium">{{job.companyName}}</a>
+                  </div>
+                </td>
+                <td [ngClass]="{'border-bottom-0': $index === JobsRecent.length - 1}">{{job.position}}</td>
+                <td [ngClass]="{'border-bottom-0': $index === JobsRecent.length - 1}">
+                  <span class="text-muted"> <i class="ti ti-map-pin me-1"></i> {{job.location}}</span>
+                </td>
+                <td [ngClass]="{'border-bottom-0': $index === JobsRecent.length - 1}">
+                  <span class="badge {{job.badgeClass}} rounded-pill">{{job.jobType}}</span>
+                </td>
+              </tr>
+            }
+          </spk-reusable-tables>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-3 col-xl-12">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">
+          Acquisitions
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="progress progress-md mb-4 mt-2">
+          <div class="progress-bar bg-primary" role="progressbar" style="width: 52%" aria-valuenow="52"
+            aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar bg-secondary" role="progressbar" style="width: 12%" aria-valuenow="12"
+            aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar bg-success" role="progressbar" style="width: 16%" aria-valuenow="16"
+            aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar bg-warning" role="progressbar" style="width: 12%" aria-valuenow="12"
+            aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-bar bg-danger" role="progressbar" style="width: 8%" aria-valuenow="8" aria-valuemin="0"
+            aria-valuemax="100"></div>
+        </div>
+        <ul class="list-group acquisitions-list mt-1">
+          @for (item of Acquisitions; track $index) {
+            <li class="list-group-item">
+              {{item.label}}
+              <span class="badge float-end {{item.badgeClass}}">{{item.count}}</span>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-3 col-xl-12">
+    <div class="card custom-card overflow-hidden">
+      <div class="card-header">
+        <div class="card-title">
+          Recent Jobs
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <overlay-scrollbars>
+          <ul class="list-group list-group-flush" id="recent-jobs">
+            @for (job of JobsRecent; track $index) {
+            <li class="list-group-item border-start-0 border-end-0"
+            [ngClass]="{
+              'border-top-0': $index === 0,
+              'border-bottom-0': $index === JobsRecent.length - 1,
+            }">
+              <a href="javascript:void(0);">
+                <div class="d-flex align-items-center flex-wrap">
+                  <div class="me-2 lh-1">
+                    <span class="avatar avatar-md avatar-rounded {{job.bgClass}}">{{job.initials}}</span>
+                  </div>
+                  <div class="flex-fill">
+                    <p class="mb-0 fw-semibold">{{job.title}}</p>
+                    <p class="fs-12 text-muted mb-0">
+                      {{job.companyInfo}} - {{job.timeInfo}}
+                    </p>
+                  </div>
+                  <div class="text-end">
+                    <p class="mb-0 fs-12">{{job.jobType}}</p>
+                    <span class="badge {{job.badgeClass}}">{{job.badge}}</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            }
+          </ul>
+        </overlay-scrollbars>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End:: row-3 -->
+
+<!-- Start:: row-4 -->
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="card-header justify-content-between">
+        <div class="card-title">
+          Recent Job Postings
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <div>
+            <input class="form-control form-control-sm" type="text" placeholder="Search Here"
+              aria-label=".form-control-sm example">
+          </div>
+          <spk-dropdowns [Customclass]="'dropdown '" [Toggletext]="'Sort By'" [Icon]="true" [placement]="'bottom-end'"
+            [IconClass]="'ri-arrow-down-s-line align-middle ms-1 d-inline-block'"
+            [class]="'btn btn-primary btn-sm btn-wave waves-effect waves-light no-caret'"
+            [Menuclass]="'dropdown-menu '">
+            <li><a class="dropdown-item" href="javascript:void(0);">New</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0);">Popular</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0);">Relevant</a></li>
+          </spk-dropdowns>
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <spk-reusable-tables [columns]="JobHeader" tableClass="table text-nowrap" [showCheckbox]="false">
+            @for (job of JobsPostings; track $index) {
+            <tr>
+              <td>{{job.id}}</td>
+              <td>{{job.title}}</td>
+              <td>{{job.department}}</td>
+              <td>{{job.company}}</td>
+              <td>{{job.location}}</td>
+              <td>{{job.applicants}}</td>
+              <td><span class="badge"
+                  [ngClass]="(job.status === 'Active') ? 'bg-success-transparent' : 'bg-danger-transparent'">{{job.status}}</span>
+              </td>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="lh-1">
+                    <span class="avatar avatar-xs avatar-rounded">
+                      <img [src]="job.avatar" alt={{job.applicantName}}>
+                    </span>
+                  </div>
+                  <div>{{job.applicantName}}</div>
+                </div>
+              </td>
+              <td>{{job.datePosted}}</td>
+              <td>
+                <div class="btn-list">
+                  <button class="btn btn-primary-light btn-icon btn-sm">
+                    <i class="ti ti-edit"></i>
+                  </button>
+                  <button class="btn btn-danger-light btn-icon btn-sm">
+                    <i class="ti ti-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+            }
+          </spk-reusable-tables>
+        </div>
+      </div>
+      <div class="card-footer ">
+        <div class="d-flex align-items-center flex-wrap">
+          <div> Showing 6 Entries <i class="bi bi-arrow-right ms-2 fw-semibold"></i> </div>
+          <div class="ms-auto">
+            <nav aria-label="Page navigation" class="pagination-style-2">
+              <ul class="pagination mb-0 flex-wrap">
+                <li class="page-item disabled">
+                  <a class="page-link" href="javascript:void(0);">
+                    Prev
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+                <li class="page-item active"><a class="page-link" href="javascript:void(0);">2</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="javascript:void(0);">
+                    <i class="bi bi-three-dots"></i>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="javascript:void(0);">17</a></li>
+                <li class="page-item">
+                  <a class="page-link text-primary" href="javascript:void(0);">
+                    next
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End:: row-4 -->

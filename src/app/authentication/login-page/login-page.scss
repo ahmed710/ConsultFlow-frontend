@@ -1,0 +1,33 @@
+::ng-deep{
+  .btn-main-primary {
+      color: #fff !important;
+      background-color: #5965f9 !important;
+      border-color: #5965f9 !important;
+  }
+}
+.main-signin-header .form-control {
+
+border-width: 1px;
+}
+
+.firebase-img img {
+width: 28px;
+height: 28px;
+}
+
+.main-signin-header .nav-tabs {
+// background-color: #e4e3ef;
+width: 95px;
+justify-content: center;
+// justify-content: space-between;
+margin: 0 auto;
+padding: 4px;
+border-radius: 0px;
+border: 1px solid #e4e3ef;
+}
+.main-signin-header .firebase-img {
+padding: 7px;
+}
+.firebase-img.nav-link.active {
+background-color: rgba(var(--primary-rgb), 0.05) !important;
+}

@@ -1,0 +1,14 @@
+<div class="card custom-card {{project().cardClass}}">
+  <div class="card-body {{project().bodyClass}}">
+      <div class="d-flex align-items-start gap-3">
+          <div class="lh-1">
+              <span class="avatar avatar-md bg-{{project().svgColor}}-transparent svg-{{project().svgColor}}" [innerHTML]="getSanitizedSVG(project().svgIcon)">
+              </span>
+          </div>
+          <div>
+              <span class="d-block text-muted mb-1">{{project().title}}</span>
+              <h5 class="fw-semibold mb-0">{{project().price}}</h5>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+
+    <div class="card custom-card dashboard-main-card overflow-hidden" [ngClass]="data()?.color">
+      <div class="card-body">
+        <div class="d-flex align-items-start gap-3 flex-wrap">
+          <div class="flex-fill">
+            <span class="fs-13 fw-medium">{{ data()?.title }}</span>
+            <h4 class="fw-semibold my-2 lh-1">{{ data()?.value }}</h4>
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="fs-12 d-block text-muted">
+                <span
+                  [ngClass]="{
+                    'text-success': data()?.changeType === 'up',
+                    'text-danger': data()?.changeType === 'down'
+                  }"
+                  class="me-1 d-inline-flex align-items-center fw-semibold"
+                >
+                  <i
+                    class="me-1 fw-semibold align-middle ti ti-trending-{{data()?.changeType}}"
+                  ></i>
+                  {{ data()?.change }}
+                </span>
+                this month
+              </span>
+            </div>
+          </div>
+          <div>
+            <span class="avatar avatar-md bg-{{data()?.color}}-transparent svg-{{data()?.color}}" [innerHTML]="getSanitizedSVG(data()?.iconSvg || '')"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+

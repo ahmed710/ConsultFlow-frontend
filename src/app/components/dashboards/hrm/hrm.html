@@ -1,0 +1,306 @@
+<app-breadcrumb title="Dashboards" [subtitle]='false' active_item="HRM"></app-breadcrumb>
+
+<!-- Start:: row-1 -->
+<div class="row">
+  <div class="col-xxl-4 col-xl-6">
+    <div class="row">
+      <div class="col-xl-12">
+        <div class="card custom-card overflow-hidden">
+          <div class="card-body p-0">
+            <div class="row g-0">
+              @for (hrm of Hrmcards; track $index) {
+              <div class="col-xl-6">
+                <spk-hrm-card [hrm]="hrm"></spk-hrm-card>
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-12">
+        <div class="card custom-card">
+          <div class="card-body">
+            <h6 class="fw-semibold mb-3">Employees Status</h6>
+            <div class="progress-stacked progress-xl mb-3">
+              <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+                aria-valuemax="100">25%</div>
+              <div class="progress-bar bg-success" role="progressbar" style="width: 35%" aria-valuenow="35"
+                aria-valuemin="0" aria-valuemax="100">35%</div>
+              <div class="progress-bar bg-warning" role="progressbar" style="width: 25%" aria-valuenow="25"
+                aria-valuemin="0" aria-valuemax="100">25%</div>
+              <div class="progress-bar bg-danger" role="progressbar" style="width: 15%" aria-valuenow="15"
+                aria-valuemin="0" aria-valuemax="100">15%</div>
+            </div>
+            <div class="row gy-2">
+              @for (attendance of EmployeesStatus; track $index) {
+                <div class="col-xl-6">
+                  <div class="d-flex align-items-center gap-4 flex-wrap">
+                    <div class="employee-status-marker {{attendance.className}}">{{attendance.type}} :</div>
+                    <div class="fw-semibold">{{attendance.count}}</div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-5 col-xl-6">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">
+          Candidate Statistics
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <div class="row g-0 border-bottom border-block-end-dashed">
+          <div class="col-xl-6 border-end">
+            <div class="text-center p-3">
+              <span class="d-block text-muted mb-1">Total Candidates Hired</span>
+              <h5 class="fw-semibold mb-0">576</h5>
+            </div>
+          </div>
+          <div class="col-xl-6">
+            <div class="text-center p-3">
+              <span class="d-block text-muted mb-1">Total Responses</span>
+              <h5 class="fw-semibold mb-0">1,854</h5>
+            </div>
+          </div>
+        </div>
+        <div id="candidate-statistics" class="p-3">
+          <spk-apexcharts [chartOptions]="CandidateOptions"></spk-apexcharts>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-3">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">
+          Attendance Overview
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="attendance-overview">
+          <spk-apexcharts [chartOptions]="AttendanceOptions"></spk-apexcharts>
+        </div>
+        <ul class="list-unstyled my-4 hrm-attendance-overview-list">
+          @for (attendance of AttendanceData; track $index) {
+            <li>
+              <div class="d-flex align-items-center justify-content-between gap-2">
+                <div class="attendance-type {{attendance.className}}">{{attendance.type}}</div>
+                <div class="fw-semibold">{{attendance.count}}</div>
+              </div>
+            </li>
+          }
+        </ul>
+        <div class="d-grid">
+          <button class="btn btn-light btn-lg">View Complete Statistics <i
+              class="ti ti-arrow-narrow-right ms-1"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End:: row-1 -->
+
+<!-- Start:: row-2 -->
+<div class="row">
+  <div class="col-xxl-4">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">
+          Employees By Department
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="employee-department">
+          <spk-apexcharts [chartOptions]="EmployeeOptions"></spk-apexcharts>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-4">
+    <div class="card custom-card">
+      <div class="card-header justify-content-between">
+        <div class="card-title">
+          Employees List
+        </div>
+        <a href="javascript:void(0);" class="text-muted fs-13">View All<i class="ti ti-arrow-narrow-right ms-1"></i></a>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled hrm-employee-list">
+          @for (employee of Employees; track $index) {
+            <li>
+              <div class="d-flex align-items-center gap-2 flex-wrap">
+                <div class="lh-1">
+                  <span class="avatar avatar-md avatar-rounded">
+                    <img [src]="employee.image" alt="">
+                  </span>
+                </div>
+                <div class="flex-fill">
+                  <span class="d-block fw-semibold">{{employee.name}}<span
+                      class="badge bg-{{employee.badgeColor}}-transparent ms-2">{{employee.department}}</span></span>
+                  <span class="text-muted fs-13">
+                    {{employee.role}}
+                  </span>
+                </div>
+                <div class="text-end">
+                  <span class="fw-medium">{{employee.joinDate}}</span>
+                  <span class="d-block fs-12 mt-1 text-muted">
+                    Joined
+                  </span>
+                </div>
+              </div>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-xxl-4">
+    <div class="card custom-card overflow-hidden">
+      <div class="card-header justify-content-between">
+        <div class="card-title">
+          Today's Attendance
+        </div>
+        <spk-dropdowns [Customclass]="'dropdown'" [Icon]="true" [title]="'Sort By'"
+          [IconClass]="'ri-arrow-down-s-line align-middle ms-1 d-inline-block'"
+          [class]="'py-0 px-2 fs-12 text-muted no-caret border-0'" [Menuclass]="'dropdown-menu'">
+          <li><a class="dropdown-item" href="javascript:void(0);">This Week</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);">Last Week</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);">This Month</a></li>
+        </spk-dropdowns>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <spk-reusable-tables [columns]="AttendanceHeader" tableClass="table text-nowrap table-hover" [showCheckbox]="false">
+            @for (attendance of AttendancesToday; track $index) {
+              <tr>
+                <td>
+                  <div class="d-flex align-items-center gap-2">
+                    <span class="avatar avatar-md bg-light p-1 avatar-rounded">
+                      <img [src]="attendance.image" alt="">
+                    </span>
+                    <div>
+                      <p class="fw-medium mb-0">{{attendance.name}} </p>
+                      <span class="text-muted fs-12">{{attendance.role}}</span>
+                    </div>
+                  </div>
+                </td>
+                <td>{{attendance.time}}</td>
+                <td>
+                  <span class="badge bg-{{attendance.badgeColor}}-transparent rounded-pill min-w-badge">{{attendance.status}}</span>
+                </td>
+              </tr>
+            }
+          </spk-reusable-tables>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End:: row-2 -->
+
+<!-- Start:: row-3 -->
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="card-header justify-content-between">
+        <div class="card-title">
+          Applicant Details
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <div>
+            <input class="form-control form-control-sm" type="text" placeholder="Search Here"
+              aria-label=".form-control-sm example">
+          </div>
+          <spk-dropdowns [Customclass]="'dropdown '" [Toggletext]="'Sort By'" [Icon]="true"
+            [IconClass]="'ri-arrow-down-s-line align-middle ms-1 d-inline-block'"
+            [class]="'btn btn-primary btn-sm btn-wave waves-effect waves-light no-caret'"
+            [Menuclass]="'dropdown-menu '">
+            <li><a class="dropdown-item" href="javascript:void(0);">New</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0);">Popular</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0);">Relevant</a></li>
+          </spk-dropdowns>
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <spk-reusable-tables [columns]="HrmHeader" tableClass="table text-nowrap" [showCheckbox]="true">
+            @for (applicant of Applicants; track $index) {
+            <tr>
+              <th scope="row"><input class="form-check-input" type="checkbox" [checked]="applicant.isChecked"
+                  id="checkboxNoLabel2" value="" aria-label="..."></th>
+              <td>{{applicant.id}}</td>
+              <td>
+                <div class="d-flex align-items-center">
+                  <span class="avatar avatar-sm me-2 avatar-rounded">
+                    <img [src]="applicant.image" alt="img">
+                  </span> {{applicant.name}}
+                </div>
+              </td>
+              <td>{{applicant.role}}</td>
+              <td>{{applicant.dateApplied}}</td>
+              <td>{{applicant.email}}</td>
+              <td>{{applicant.experience}}</td>
+              <td>
+                <span class="badge " [ngClass]="'bg-' +
+                            (applicant.status === 'New' ? 'primary' :
+                             applicant.status === 'Interviewed' ? 'success' :
+                             applicant.status === 'Hired' ? 'info' :
+                             applicant.status === 'Under Review' ? 'secondary' :
+                             'danger') + '-transparent'">{{applicant.status}}</span>
+              </td>
+              <td>
+                <div class="hstack gap-2 fs-15">
+                  <a aria-label="anchor" href="javascript:void(0);"
+                    class="btn btn-icon waves-effect waves-light btn-sm btn-success-light rounded-circle"><i
+                      class="ri-phone-line"></i></a>
+                  <a aria-label="anchor" href="javascript:void(0);"
+                    class="btn btn-icon waves-effect waves-light btn-sm btn-primary-light rounded-circle"><i
+                      class="ri-edit-line"></i></a>
+                  <a aria-label="anchor" href="javascript:void(0);"
+                    class="btn btn-icon btn-wave waves-effect waves-light btn-sm btn-danger-light rounded-circle"><i
+                      class="ri-delete-bin-line"></i></a>
+                </div>
+              </td>
+            </tr>
+            }
+          </spk-reusable-tables>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex align-items-center">
+          <div> Showing 5 Entries <i class="bi bi-arrow-right ms-2 fw-semibold"></i> </div>
+          <div class="ms-auto">
+            <nav aria-label="Page navigation" class="pagination-style-2">
+              <ul class="pagination mb-0 flex-wrap">
+                <li class="page-item disabled">
+                  <a class="page-link" href="javascript:void(0);">
+                    Prev
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="javascript:void(0);">1</a></li>
+                <li class="page-item active"><a class="page-link" href="javascript:void(0);">2</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="javascript:void(0);">
+                    <i class="bi bi-three-dots"></i>
+                  </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="javascript:void(0);">17</a></li>
+                <li class="page-item">
+                  <a class="page-link text-primary" href="javascript:void(0);">
+                    next
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End:: row-3 -->

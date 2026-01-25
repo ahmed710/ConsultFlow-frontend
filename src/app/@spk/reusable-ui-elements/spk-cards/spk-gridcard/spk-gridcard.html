@@ -1,0 +1,23 @@
+<div class="col">
+    <div class="card custom-card">
+      @if(image){
+
+        <img [src]="image" class="card-img-top" alt="Card image">
+      }
+      <div class="card-body">
+        <h6 class="card-title fw-medium">{{ title() }}</h6>
+        @if (text1()) {
+          <p class="card-text">{{discription1()}}</p>
+          } 
+          @else{
+          <p class="card-text">{{discription()}}</p>
+          }
+          @if(button()){
+            <div class="d-flex gap-1 align-items-center flex-wrap">
+              <a href="javascript:void(0);" class="btn btn-success me-1">Read More</a>
+              <a href="javascript:void(0);" class="btn btn-info">Get Details</a>
+            </div>
+          }
+      </div>
+    </div>
+  </div>

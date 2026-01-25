@@ -1,0 +1,26 @@
+
+    <div class="card custom-card dashboard-main-card {{ cardBgColor() }}">
+      <div class="card-body">
+        <div class="d-flex align-items-start gap-3 flex-wrap">
+          <div class="flex-fill">
+            <span class="fs-13 fw-medium">{{ cardTitle() }}</span>
+            <h4 class="fw-semibold my-2 lh-1">{{ cardValue() }}</h4>
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="d-block text-muted">
+                <span
+                  class="fs-12 badge {{ cardPercentageColor() }}-transparent me-1"
+                  >{{ cardPercentage() }}</span
+                >
+                this month
+              </span>
+            </div>
+          </div>
+          <div>
+            <span class="avatar avatar-md bg-{{ cardIconColor() }}-transparent svg-{{ cardIconColor() }}">
+              <svg [innerHTML]="getSanitizedSVG(cardIcon() || '')"></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+

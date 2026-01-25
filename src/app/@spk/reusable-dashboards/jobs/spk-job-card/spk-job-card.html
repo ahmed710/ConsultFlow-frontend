@@ -1,0 +1,17 @@
+<div class="card custom-card dashboard-main-card">
+  <div class="card-body">
+      <div class="d-flex align-items-center gap-3 flex-wrap justify-content-between">
+          <div>
+              <span class="d-block mb-1">{{job().title}}</span>
+              <div class="d-flex align-items-center gap-2">
+                  <h3 class="fw-semibold mb-0">{{job().count}}</h3>
+                  <span class="text-{{job().iconColor}}"><i class={{job().icon}}></i>{{job().percent}}</span>
+              </div>
+          </div>
+          <div class="lh-1">
+              <span class="avatar avatar-lg bg-{{job().priceColor}}-transparent svg-{{job().priceColor}}" [innerHTML]="getSanitizedSVG(job().svgIcon)">
+              </span>
+          </div>
+      </div>
+  </div>
+</div>

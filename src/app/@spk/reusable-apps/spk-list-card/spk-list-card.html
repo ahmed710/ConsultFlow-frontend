@@ -1,0 +1,37 @@
+<div class="card custom-card {{list().cardClass}}">
+  <div class="card-body {{list().bodyClass}}">
+    <div class="d-flex align-items-start gap-3">
+      <div class="flex-fill">
+        @if (listCard()) {
+        <!--<h6 class="{{titleClass}}"></h6>-->
+        <span class="{{titleClass()}}">{{list().title}}</span>
+        }
+        @else{
+        <h6 class="{{titleClass()}}">{{list().title}}</h6>
+        }
+
+        <div class="pb-0 mt-1">
+          <div>
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <h4 class="fw-medium mb-0 {{list().headingClass}}">
+                <span class="count-up" [attr.data-count]="list().count">{{ list().count }}</span>
+              </h4>
+              @if (listCard()) {
+              <span class="badge bg-{{list().priceColor}}">{{list().price}}</span>
+              }
+            </div>
+            <p class="text-muted fs-11 mb-0 lh-1">
+              <span class="text-{{list().iconColor}} {{list().textClass}} me-1 fw-medium">
+                <i class={{list().icon}}></i>{{list().percent}}
+              </span>
+              <span class="fs-14">This month</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="avatar avatar-lg bg-{{list().priceColor}}-transparent mb-3 svg-{{list().priceColor}} mx-auto"
+        [innerHTML]="getSanitizedSVG(list().svgIcon)">
+      </div>
+    </div>
+  </div>
+</div>
