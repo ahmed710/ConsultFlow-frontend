@@ -1,0 +1,7 @@
+node_modules
+.git
+.angular
+.gitignore
+.editorconfig
+firebase-key.json
+README.md
