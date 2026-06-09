@@ -44,7 +44,7 @@
         <div class="table-responsive">
           <spk-reusable-tables [columns]="projectColumn" tableClass=" text-nowrap" [showCheckbox]="false">
             @for(project of projectData;track $index){
-            <tr >
+            <tr (click)="viewProject(project.id)">
               <td [ngClass]="{'border-bottom-0': $index === projectData.length - 1}">{{project.name}}</td>
               <td [ngClass]="{'border-bottom-0': $index === projectData.length - 1}">
                 <div class="d-flex align-items-center gap-1">

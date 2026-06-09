@@ -1,40 +1,65 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../../../../shared/shared.module';
+import { AuthService } from '../sign-up-service/sign-up-service.services';
 
 @Component({
   selector: 'app-basic',
   standalone: true,
-  imports: [RouterModule,SharedModule],
+  imports: [RouterModule, SharedModule, FormsModule],
   templateUrl: './basic.html',
   styleUrl: './basic.scss'
 })
 export class Basic {
-  constructor(){
+
+  email = '';
+  password = '';
+  role = 'User';
+
+  showPassword = false;
+  toggleClass = 'off-line';
+
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {
     document.body.classList.add('authentication-background');
   }
 
   ngOnDestroy(): void {
     document.body.classList.remove('authentication-background');
   }
-  showPassword = false;
-  showPassword1 = false;
-  toggleClass = "off-line";
-  toggleClass1 = "off-line";
+
   createpassword() {
     this.showPassword = !this.showPassword;
-    if (this.toggleClass === "off-line") {
-      this.toggleClass = "line";
-    } else {
-      this.toggleClass = "off-line";
-    }
+    this.toggleClass = this.toggleClass === 'off-line' ? 'line' : 'off-line';
   }
-  createpassword1() {
-    this.showPassword1 = !this.showPassword1;
-    if (this.toggleClass1 === "off-line") {
-      this.toggleClass1 = "line";
-    } else {
-      this.toggleClass1 = "off-line";
+
+  register() {
+    if (!this.email || !this.password) {
+      alert('Please fill all fields');
+      return;
     }
+  if (this.password.length < 6) {
+      alert('Password must be at least 6 characters');
+      return;
+    }
+  console.log(this.password)  ;
+
+    this.authService.register({
+      email: this.email,
+      password: this.password,
+      role: this.role
+    }).subscribe({
+      next: () => {
+        alert('Registration successful 🎉');
+        this.router.navigate(['/auth/login']);
+      },
+      error: (err) => {
+        console.error(err);
+        alert(err.error?.message || 'Registration failed');
+      }
+    });
   }
 }

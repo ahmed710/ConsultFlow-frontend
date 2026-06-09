@@ -3,34 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 export const admin: Routes = [
   {path:'applications',children:[
-    {
-      path: 'chat',
-      loadComponent: () =>
-        import('./chat/chat').then(
-          (m) => m.Chat
-        ),
-    },
-    {
-        path: 'email/mail-app',
-        loadComponent: () =>
-          import('./email/mail-app/mail-app').then(
-            (m) => m.MailApp
-          ),
-      },
-      {
-        path: 'email/mail-settings',
-        loadComponent: () =>
-          import('./email/mail-settings/mail-settings').then(
-            (m) => m.MailSettings
-          ),
-      },
-      {
-        path: 'file-manager',
-        loadComponent: () =>
-          import('./file-manager/file-manager').then(
-            (m) => m.FileManager
-          ),
-      },
       {
         path: 'full-calendar',
         loadComponent: () =>

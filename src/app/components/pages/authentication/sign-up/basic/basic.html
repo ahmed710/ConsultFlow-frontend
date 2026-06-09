@@ -18,43 +18,31 @@
           <div class="row gy-3">
             <div class="col-xl-12">
               <label for="signin-email" class="form-label text-default">Email</label>
-              <input type="text" class="form-control" id="signin-email" placeholder="Enter Email"
-                     value="tomphillip21@gmail.com">
+              <input type="text" class="form-control"  name="email" id="signin-email" placeholder="Enter Email"
+                     [(ngModel)]="email">
             </div>
             <div class="col-xl-12 mb-2">
               <label for="signin-password" class="form-label text-default d-block">Password</label>
               <div class="position-relative">
-                <input class="form-control" [type]="showPassword ? 'text' : 'password'" autocomplete
-                       id="signin-password" placeholder="Enter Password" value="12345678" type="password">
+                <input class="form-control"  name="password" [type]="showPassword ? 'text' : 'password'" autocomplete
+                       id="signin-password" placeholder="Enter Password" [(ngModel)]="password" type="password">
                 <a class="show-password-button text-muted" href="javascript:void(0);" id="button-addon2"
                    (click)="createpassword()"><i class="ri-eye-{{toggleClass}} align-middle"></i></a>
               </div>
             </div>
+            <div class="col-xl-12">
+              <label class="form-label text-default">Role</label>
+              <select class="form-control" name="role" [(ngModel)]="role">
+                <option value="User">User</option>
+                <option value="Admin">Admin</option>
+              </select>
+            </div>
           </div>
           <div class="d-grid mt-3">
-            <a [routerLink]="['/dashboards/sales']" class="btn btn-primary">Sign In</a>
-          </div>
-          <div class="text-center my-3 authentication-barrier">
-            <span class="op-4 fs-13">OR</span>
-          </div>
-          <div class="d-grid mb-3">
-            <button
-              class="btn btn-white btn-w-lg border d-flex align-items-center justify-content-center flex-fill mb-3">
-                            <span class="avatar avatar-xs">
-                                <img src="./assets/images/media/apps/google.png" alt="">
-                            </span>
-              <span class="lh-1 ms-2 fs-13 text-default fw-medium">Signup with Google</span>
-            </button>
-            <button
-              class="btn btn-white btn-w-lg border d-flex align-items-center justify-content-center flex-fill">
-                            <span class="avatar avatar-xs">
-                                <img src="./assets/images/media/apps/facebook.png" alt="">
-                            </span>
-              <span class="lh-1 ms-2 fs-13 text-default fw-medium">Signup with Facebook</span>
-            </button>
+            <button (click)="register()" class="btn btn-primary">Sign Up</button>
           </div>
           <div class="text-center mt-3 fw-medium">
-            Already have a account? <a [routerLink]="['/pages/authentication/sign-in/basic']" class="text-primary">Sign In</a>
+            Already have a account? <a [routerLink]="['/auth/login']" class="text-primary">Sign In</a>
           </div>
         </div>
       </div>

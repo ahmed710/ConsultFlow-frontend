@@ -1,0 +1,398 @@
+<div class="or-shell">
+
+  <!-- ═══════════════════════════════ HEADER ═══════════════════════════════ -->
+  <header class="or-header">
+    <div class="or-header__logo">
+      <span class="logo-hex">⬡</span>
+      <span class="logo-text">OR<em>solve</em></span>
+    </div>
+    <p class="or-header__sub">Constraint-Based Resource Optimizer</p>
+  </header>
+
+  <!-- ════════════════════════════════ BODY ════════════════════════════════ -->
+  <div class="or-body">
+
+    <!-- ── STEP 1 · PROJECTS + DEMAND ── -->
+    <section class="or-section">
+      <div class="section-label">
+        <span class="step-num">01</span>
+        <span class="step-title">Projects &amp; Demand</span>
+        <span class="step-badge">{{ projects.length }} loaded</span>
+      </div>
+      <div class="project-chips">
+        <div *ngFor="let p of projects; trackBy: trackById" class="project-chip">
+          <span class="chip-icon">◈</span>
+          <span class="chip-name">{{ p.name }}</span>
+          <div class="chip-demand-edit" (click)="$event.stopPropagation()">
+            <button class="stepper-btn" (click)="projectDemand[p.name] = (projectDemand[p.name] ?? 5) > 1 ? (projectDemand[p.name] ?? 5) - 1 : 1">−</button>
+            <span class="demand-val">{{ projectDemand[p.name] ?? 5 }}d</span>
+            <button class="stepper-btn" (click)="projectDemand[p.name] = (projectDemand[p.name] ?? 5) + 1">+</button>
+          </div>
+        </div>
+        <div *ngIf="projects.length === 0" class="empty-state">No projects loaded yet…</div>
+      </div>
+    </section>
+
+    <!-- ── STEP 2 · CONSULTANTS ── -->
+    <section class="or-section">
+      <div class="section-label">
+        <span class="step-num">02</span>
+        <span class="step-title">Consultants</span>
+        <span class="step-badge">{{ selectedConsultants.length }} selected</span>
+      </div>
+      <div class="consultants-grid">
+        <div
+          *ngFor="let c of consultants; trackBy: trackById"
+          class="consultant-card"
+          [class.is-selected]="isSelectedConsultant(c)"
+          (click)="toggleConsultant(c)">
+          <div class="consultant-card__avatar">{{ c.name.charAt(0) }}</div>
+          <div class="consultant-card__info">
+            <span class="cc-name">{{ c.name }}</span>
+            <span class="cc-expertise">{{ c.expertise }}</span>
+          </div>
+          <div class="consultant-card__avail" *ngIf="isSelectedConsultant(c)" (click)="$event.stopPropagation()">
+            <label>Avail. days</label>
+            <input type="number" min="1" max="30" [(ngModel)]="consultantAvail[c.name]" />
+          </div>
+          <div class="consultant-card__check">
+            <span *ngIf="isSelectedConsultant(c)">✓</span>
+          </div>
+        </div>
+        <div *ngIf="consultants.length === 0" class="empty-state">No consultants loaded yet…</div>
+      </div>
+    </section>
+
+    <!-- ── STEP 3 · SKILL MATRIX ── -->
+    <section class="or-section" *ngIf="selectedConsultants.length > 0 && projects.length > 0">
+      <div class="section-label">
+        <span class="step-num">03</span>
+        <span class="step-title">Skill Match Matrix</span>
+        <span class="step-hint">Click cells to toggle — auto-inferred from expertise</span>
+      </div>
+      <div class="skill-matrix-scroll">
+        <table class="skill-table">
+          <thead>
+          <tr>
+            <th class="skill-th-name">Consultant</th>
+            <th *ngFor="let p of projects" class="skill-th-proj">{{ p.name }}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let c of selectedConsultants; trackBy: trackById">
+            <td class="skill-td-name">
+              <span class="skill-avatar">{{ c.name.charAt(0) }}</span>
+              {{ c.name }}
+            </td>
+            <td
+              *ngFor="let p of projects; trackBy: trackById"
+              class="skill-td-cell"
+              [class.is-match]="getSkillMatch(c, p) === 1"
+              (click)="toggleSkillMatch(c, p)">
+                <span class="skill-cell-inner">
+                  {{ getSkillMatch(c, p) === 1 ? '✓' : '·' }}
+                </span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ── STEP 4 · CONFIG ── -->
+    <section class="or-section">
+      <div class="section-label">
+        <span class="step-num">04</span>
+        <span class="step-title">Solver Config</span>
+      </div>
+      <div class="config-row">
+        <div class="config-item">
+          <label class="config-label">Max days / assignment</label>
+          <div class="config-stepper">
+            <button (click)="maxDaysPerAssignment = maxDaysPerAssignment > 1 ? maxDaysPerAssignment - 1 : 1">−</button>
+            <span>{{ maxDaysPerAssignment }}</span>
+            <button (click)="maxDaysPerAssignment = maxDaysPerAssignment + 1">+</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ACTION ── -->
+    <div class="or-action">
+      <button
+        class="solve-btn"
+        [class.is-loading]="loading"
+        [disabled]="!canSolve()"
+        (click)="solve()">
+        <span class="solve-btn__inner" *ngIf="!loading">
+          <span class="solve-btn__icon">⬡</span>
+          Run OR-Solver
+        </span>
+        <span class="solve-btn__inner" *ngIf="loading">
+          <span class="spinner"></span>
+          Solving…
+        </span>
+      </button>
+      <p class="action-hint" *ngIf="selectedConsultants.length === 0">
+        Select at least one consultant to proceed
+      </p>
+    </div>
+
+  </div><!-- /or-body -->
+
+  <!-- ═══════════════════════ AI LOADING OVERLAY ════════════════════════ -->
+  <div class="ai-loader" *ngIf="loading">
+    <div class="ai-loader__content">
+      <div class="ai-orb">
+        <div class="orb-ring r1"></div>
+        <div class="orb-ring r2"></div>
+        <div class="orb-ring r3"></div>
+        <span class="orb-hex">⬡</span>
+      </div>
+      <p class="ai-loader__phase">{{ loadingMessages[loadingPhase] }}</p>
+      <div class="ai-loader__bar">
+        <div class="ai-loader__fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ RESULTS ══════════════════════════════ -->
+  <div class="or-results" *ngIf="result && !loading">
+
+    <!-- RESULTS HEADER -->
+    <div class="results-header">
+      <div class="results-header__left">
+        <span class="results-icon">◈</span>
+        <div>
+          <h2>Optimization Complete</h2>
+          <p class="results-sub">Solver found the optimal assignment plan</p>
+        </div>
+      </div>
+      <span class="status-badge" [class.ok]="result.status === 'optimal'">
+        {{ result.status ?? 'done' }}
+      </span>
+    </div>
+
+    <!-- KPI ROW -->
+    <div class="kpi-row">
+      <div class="kpi-card">
+        <span class="kpi-icon">👥</span>
+        <span class="kpi-val">{{ selectedConsultants.length }}</span>
+        <span class="kpi-label">Consultants</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-icon">◈</span>
+        <span class="kpi-val">{{ projects.length }}</span>
+        <span class="kpi-label">Projects</span>
+      </div>
+      <div class="kpi-card accent">
+        <span class="kpi-icon">📅</span>
+        <span class="kpi-val">{{ result.total_assigned_days ?? '—' }}</span>
+        <span class="kpi-label">Total Days Assigned</span>
+      </div>
+      <div class="kpi-card" [class.warn]="(result.unassigned_days ?? 0) > 0">
+        <span class="kpi-icon">⚡</span>
+        <span class="kpi-val">{{ result.unassigned_days ?? 0 }}</span>
+        <span class="kpi-label">Unassigned Days</span>
+      </div>
+    </div>
+
+    <!-- UNASSIGNED WARNING -->
+    <div class="unassigned-banner" *ngIf="result.unassigned_days > 0">
+      <span class="warn-icon">⚠</span>
+      <span>{{ result.unassigned_days }} days could not be assigned — constraints may be too strict or capacity insufficient.</span>
+    </div>
+
+    <!-- ── ASSIGNMENT MATRIX ── -->
+    <div class="result-block">
+      <div class="block-header">
+        <div class="block-title-group">
+          <span class="block-tag">01</span>
+          <h3 class="block-title">Assignment Matrix</h3>
+        </div>
+        <span class="block-sub">Days allocated per consultant · project pair</span>
+      </div>
+
+      <div class="matrix-scroll">
+        <table class="matrix-table">
+          <thead>
+          <tr>
+            <th class="th-consultant">Consultant</th>
+            <th *ngFor="let p of projects" class="th-project">
+              <span class="th-proj-name">{{ p.name }}</span>
+              <span class="th-proj-demand">{{ projectDemand[p.name] ?? 0 }}d needed</span>
+            </th>
+            <th class="th-util">Utilization</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let c of selectedConsultants; trackBy: trackById" class="matrix-row">
+            <td class="td-consultant">
+              <div class="td-consultant-inner">
+                <div class="td-avatar" [attr.data-level]="getBurnoutLevel(getBurnoutScore(c.name))">
+                  {{ c.name.charAt(0) }}
+                </div>
+                <div class="td-consultant-info">
+                  <span class="td-name">{{ c.name }}</span>
+                  <span class="td-role">{{ c.expertise }}</span>
+                </div>
+              </div>
+            </td>
+            <td *ngFor="let p of projects" class="td-cell">
+                <span
+                  class="days-pill"
+                  [class.has-days]="getAssignedDaysForCell(c.name, p.name) > 0"
+                  [class.zero]="getAssignedDaysForCell(c.name, p.name) === 0">
+                  {{ getAssignedDaysForCell(c.name, p.name) > 0 ? getAssignedDaysForCell(c.name, p.name) + 'd' : '—' }}
+                </span>
+            </td>
+            <td class="td-util">
+              <div class="util-wrap">
+                <div class="util-track">
+                  <div
+                    class="util-fill"
+                    [class.hi]="getUtilizationPercent(c.name) > 85"
+                    [class.mid]="getUtilizationPercent(c.name) >= 60 && getUtilizationPercent(c.name) <= 85"
+                    [style.width.%]="getUtilizationPercent(c.name)">
+                  </div>
+                </div>
+                <span class="util-pct" [class.hi]="getUtilizationPercent(c.name) > 85">
+                    {{ getUtilizationPercent(c.name) }}%
+                  </span>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── PROJECT COVERAGE ── -->
+    <div class="result-block">
+      <div class="block-header">
+        <div class="block-title-group">
+          <span class="block-tag">02</span>
+          <h3 class="block-title">Project Coverage</h3>
+        </div>
+        <span class="block-sub">Days filled vs. demand target per project</span>
+      </div>
+
+      <div class="coverage-grid">
+        <div class="coverage-card" *ngFor="let pt of getProjectTotals()">
+          <div class="cov-top">
+            <div class="cov-name-wrap">
+              <span class="cov-dot" [class.full]="pt.total >= pt.demand" [class.partial]="pt.total > 0 && pt.total < pt.demand" [class.empty]="pt.total === 0"></span>
+              <span class="cov-name">{{ pt.project }}</span>
+            </div>
+            <span class="cov-status" [class.full]="pt.total >= pt.demand">
+              {{ pt.total >= pt.demand ? 'Covered' : 'Partial' }}
+            </span>
+          </div>
+          <div class="cov-numbers">
+            <span class="cov-assigned">{{ pt.total }}<em>d</em></span>
+            <span class="cov-sep">/</span>
+            <span class="cov-demand">{{ pt.demand }}<em>d</em></span>
+          </div>
+          <div class="cov-track">
+            <div
+              class="cov-fill"
+              [class.full]="pt.total >= pt.demand"
+              [class.partial]="pt.total > 0 && pt.total < pt.demand"
+              [style.width.%]="pt.demand > 0 ? (pt.total / pt.demand * 100) : 0">
+            </div>
+          </div>
+          <div class="cov-pct">
+            {{ pt.demand > 0 ? (pt.total / pt.demand * 100 | number:'1.0-0') : 0 }}% coverage
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── BURNOUT RISK INDICATORS ── -->
+    <div class="result-block">
+      <div class="block-header">
+        <div class="block-title-group">
+          <span class="block-tag">03</span>
+          <h3 class="block-title">Burnout Risk Indicators</h3>
+        </div>
+        <div class="burnout-legend">
+          <span class="bl-item safe">● Safe</span>
+          <span class="bl-item watch">◐ Watch</span>
+          <span class="bl-item risk">▲ At Risk</span>
+          <span class="bl-item critical">⚠ Critical</span>
+        </div>
+      </div>
+
+      <div class="burnout-list">
+        <div
+          *ngFor="let item of burnoutConsultants; let i = index"
+          class="burnout-row"
+          [attr.data-level]="getBurnoutLevel(item.score)"
+          [style.animation-delay]="(i * 60) + 'ms'">
+
+          <!-- Avatar -->
+          <div class="br-avatar" [attr.data-level]="getBurnoutLevel(item.score)">
+            {{ item.consultant.name.charAt(0) }}
+          </div>
+
+          <!-- Identity -->
+          <div class="br-identity">
+            <span class="br-name">{{ item.consultant.name }}</span>
+            <span class="br-role">{{ item.consultant.expertise }}</span>
+          </div>
+
+          <!-- Gauge arc (SVG) -->
+          <div class="br-gauge-wrap">
+            <svg viewBox="0 0 72 72" width="72" height="72" class="br-gauge">
+              <circle cx="36" cy="36" r="28" fill="none" stroke-width="5" class="gauge-track"/>
+              <circle
+                cx="36" cy="36" r="28"
+                fill="none" stroke-width="5"
+                stroke-linecap="round"
+                class="gauge-arc"
+                [attr.data-level]="getBurnoutLevel(item.score)"
+                [style.stroke-dasharray]="'175.93'"
+                [style.stroke-dashoffset]="175.93 - (175.93 * item.score / 100)"
+                transform="rotate(-90 36 36)"/>
+              <text x="36" y="40" text-anchor="middle" class="gauge-num">{{ item.score }}</text>
+            </svg>
+          </div>
+
+          <!-- Bar + insight -->
+          <div class="br-detail">
+            <div class="br-badge-row">
+              <span class="br-badge" [attr.data-level]="getBurnoutLevel(item.score)">
+                {{ getBurnoutIcon(item.score) }} {{ getBurnoutLabel(item.score) }}
+              </span>
+              <span class="br-days-stat">
+                {{ getAssignedDays(item.consultant.name) }}d / {{ consultantAvail[item.consultant.name] ?? 0 }}d avail.
+              </span>
+            </div>
+            <p class="br-insight">{{ getBurnoutInsight(item.consultant) }}</p>
+            <div class="br-bar-track">
+              <!-- threshold ticks -->
+              <div class="br-tick" style="left: 40%"></div>
+              <div class="br-tick" style="left: 70%"></div>
+              <div class="br-tick" style="left: 90%"></div>
+              <div
+                class="br-bar-fill"
+                [attr.data-level]="getBurnoutLevel(item.score)"
+                [style.width.%]="item.score">
+              </div>
+            </div>
+            <div class="br-bar-labels">
+              <span>0</span>
+              <span style="left:40%">Safe</span>
+              <span style="left:70%">Watch</span>
+              <span style="left:90%">Risk</span>
+              <span style="left:100%">100</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /or-results -->
+
+</div><!-- /or-shell -->

@@ -109,7 +109,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/dashboards/projects/project-overview',
+              path: '/dashboards/projects/1bveLuROnuhf5Zg57VUX',
             },
             {
               title: 'Create Project',
@@ -118,76 +118,6 @@ export class NavService implements OnDestroy {
               active: false,
               selected: false,
               path: '/dashboards/projects/create-project',
-            },
-          ]
-        },
-        {
-          title: 'Sales',
-          dirchange: false,
-          type: 'link',
-          subIcon: `<svg xmlns="http://www.w3.org/2000/svg" class="side-menu-doublemenu__icon" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M54.46,201.54c-9.2-9.2-3.1-28.53-7.78-39.85C41.82,150,24,140.5,24,128s17.82-22,22.68-33.69C51.36,83,45.26,63.66,54.46,54.46S83,51.36,94.31,46.68C106.05,41.82,115.5,24,128,24S150,41.82,161.69,46.68c11.32,4.68,30.65-1.42,39.85,7.78s3.1,28.53,7.78,39.85C214.18,106.05,232,115.5,232,128S214.18,150,209.32,161.69c-4.68,11.32,1.42,30.65-7.78,39.85s-28.53,3.1-39.85,7.78C150,214.18,140.5,232,128,232s-22-17.82-33.69-22.68C83,204.64,63.66,210.74,54.46,201.54Z" opacity="0.2"></path><path d="M54.46,201.54c-9.2-9.2-3.1-28.53-7.78-39.85C41.82,150,24,140.5,24,128s17.82-22,22.68-33.69C51.36,83,45.26,63.66,54.46,54.46S83,51.36,94.31,46.68C106.05,41.82,115.5,24,128,24S150,41.82,161.69,46.68c11.32,4.68,30.65-1.42,39.85,7.78s3.1,28.53,7.78,39.85C214.18,106.05,232,115.5,232,128S214.18,150,209.32,161.69c-4.68,11.32,1.42,30.65-7.78,39.85s-28.53,3.1-39.85,7.78C150,214.18,140.5,232,128,232s-22-17.82-33.69-22.68C83,204.64,63.66,210.74,54.46,201.54Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><circle cx="96" cy="96" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><circle cx="160" cy="160" r="16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><line x1="88" y1="168" x2="168" y2="88" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line></svg>`,
-          active: false,
-          selected: false,
-          path: '/dashboards/sales',
-        },
-        {
-          title: 'Analytics',
-          dirchange: false,
-          subIcon: `<svg xmlns="http://www.w3.org/2000/svg" class="side-menu-doublemenu__icon" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M33.6,145.5A96,96,0,0,1,96,37.5v72Z" opacity="0.2"></path><path d="M33.6,145.5A96,96,0,0,1,96,37.5v72Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><path d="M128,128.42V32A96,96,0,1,1,45.22,176.64Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path></svg>`,
-          type: 'link',
-          active: false,
-          selected: false,
-          path: '/dashboards/analytics',
-        },
-        {
-          title: 'CRM',
-          dirchange: false,
-          type: 'sub',
-          subIcon: `<svg xmlns="http://www.w3.org/2000/svg" class="side-menu-doublemenu__icon" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M128,32A96,96,0,0,0,63.8,199.38h0A72,72,0,0,1,128,160a40,40,0,1,1,40-40,40,40,0,0,1-40,40,72,72,0,0,1,64.2,39.37A96,96,0,0,0,128,32Z" opacity="0.2"></path><path d="M63.8,199.37a72,72,0,0,1,128.4,0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><circle cx="128" cy="128" r="96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle><circle cx="128" cy="120" r="40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></circle></svg>`,
-          active: false,
-          badgeClass: 'bg-warning-transparent',
-          badgeValue: '5',
-          selected: false,
-          children: [
-            {
-              title: 'Dashboard',
-              dirchange: false,
-              type: 'link',
-              active: false,
-              selected: false,
-              path: '/dashboards/crm/dashboard',
-            },
-            {
-              title: 'Contacts',
-              dirchange: false,
-              type: 'link',
-              active: false,
-              selected: false,
-              path: '/dashboards/crm/contacts',
-            },
-            {
-              title: 'Companies',
-              dirchange: false,
-              type: 'link',
-              active: false,
-              selected: false,
-              path: '/dashboards/crm/companies',
-            },
-            {
-              title: 'Deals',
-              dirchange: false,
-              type: 'link',
-              active: false,
-              selected: false,
-              path: '/dashboards/crm/deals',
-            },
-            {
-              title: 'Leads',
-              dirchange: false,
-              type: 'link',
-              active: false,
-              selected: false,
-              path: '/dashboards/crm/leads',
             },
           ]
         },
@@ -212,54 +142,6 @@ export class NavService implements OnDestroy {
           selected: false,
           children: [
             {
-              title: 'Dashboard',
-              dirchange: false,
-              type: 'link',
-              active: false,
-              selected: false,
-              path: '/dashboards/jobs/dashboard',
-            },
-            {
-              title: 'Job Details',
-              dirchange: false,
-              type: 'link',
-              active: false,
-              selected: false,
-              path: '/dashboards/jobs/job-details',
-            },
-            {
-              title: 'Search Company',
-              dirchange: false,
-              type: 'link',
-              active: false,
-              selected: false,
-              path: '/dashboards/jobs/search-company',
-            },
-            {
-              title: 'Search Jobs',
-              dirchange: false,
-              type: 'link',
-              active: false,
-              selected: false,
-              path: '/dashboards/jobs/search-jobs',
-            },
-            {
-              title: 'Job Post',
-              dirchange: false,
-              type: 'link',
-              active: false,
-              selected: false,
-              path: '/dashboards/jobs/job-post',
-            },
-            {
-              title: 'Jobs List',
-              dirchange: false,
-              type: 'link',
-              active: false,
-              selected: false,
-              path: '/dashboards/jobs/jobs-list',
-            },
-            {
               title: 'Search Candidate',
               dirchange: false,
               type: 'link',
@@ -273,7 +155,7 @@ export class NavService implements OnDestroy {
               type: 'link',
               active: false,
               selected: false,
-              path: '/dashboards/jobs/candidate-details',
+              path: '/dashboards/jobs/candidate-details/8ECiivteFrEXcJgibGbP',
             },
           ],
         },
@@ -288,46 +170,6 @@ export class NavService implements OnDestroy {
       type: 'sub',
       active: false,
       children: [
-        {
-          title: 'Chat',
-          dirchange: false,
-          subIcon: `<svg xmlns="http://www.w3.org/2000/svg" class="side-menu-doublemenu__icon" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="12"></circle><circle cx="84" cy="128" r="12"></circle><circle cx="172" cy="128" r="12"></circle><path d="M45.15,230.11A8,8,0,0,1,32,224V64a8,8,0,0,1,8-8H216a8,8,0,0,1,8,8V192a8,8,0,0,1-8,8H80Z" opacity="0.2"></path><path d="M45.15,230.11A8,8,0,0,1,32,224V64a8,8,0,0,1,8-8H216a8,8,0,0,1,8,8V192a8,8,0,0,1-8,8H80Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path></svg>`,
-          type: 'link',
-          active: false,
-          selected: false,
-          path: '/applications/chat',
-        },
-        {
-          title: 'Email',
-          dirchange: false,
-          type: 'sub',
-          subIcon: `<svg xmlns="http://www.w3.org/2000/svg" class="side-menu-doublemenu__icon" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><polygon points="224 56 128 144 32 56 224 56" opacity="0.2"></polygon><path d="M32,56H224a0,0,0,0,1,0,0V192a8,8,0,0,1-8,8H40a8,8,0,0,1-8-8V56A0,0,0,0,1,32,56Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><polyline points="224 56 128 144 32 56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline></svg>`,
-          active: false,
-          selected: false,
-          children: [
-            {
-              title: 'Mail App',
-              dirchange: false,
-              type: 'link',
-              active: false,
-              selected: false,
-              path: '/applications/email/mail-app',
-            },
-            {
-              title: 'Mail Settings',
-              dirchange: false,
-              type: 'link',
-              active: false,
-              selected: false,
-              path: '/applications/email/mail-settings',
-            },
-          ],
-        },
-        {
-          path: '/applications/file-manager',
-          subIcon: `<svg xmlns="http://www.w3.org/2000/svg" class="side-menu-doublemenu__icon" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M98.34,50.34,128,80H32V56a8,8,0,0,1,8-8H92.69A8,8,0,0,1,98.34,50.34Z" opacity="0.2"></path><path d="M216.89,208H39.38A7.4,7.4,0,0,1,32,200.62V80H216a8,8,0,0,1,8,8V200.89A7.11,7.11,0,0,1,216.89,208Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><path d="M32,80V56a8,8,0,0,1,8-8H92.69a8,8,0,0,1,5.65,2.34L128,80" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path></svg>`,
-          dirchange: false, selected: false, title: 'File Manager', type: 'link'
-        },
         {
           path: '/applications/full-calendar',
           subIcon: `<svg xmlns="http://www.w3.org/2000/svg" class="side-menu-doublemenu__icon" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M40,88H216V48a8,8,0,0,0-8-8H48a8,8,0,0,0-8,8Z" opacity="0.2"></path><rect x="40" y="40" width="176" height="176" rx="8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></rect><line x1="176" y1="24" x2="176" y2="56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><line x1="80" y1="24" x2="80" y2="56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><line x1="40" y1="88" x2="216" y2="88" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line><polyline points="88 128 104 120 104 184" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></polyline><path d="M138.14,128a16,16,0,1,1,26.64,17.63L136,184h32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path></svg>`,
@@ -383,15 +225,15 @@ export class NavService implements OnDestroy {
       active: false,
       children: [
         {
-          path: '/maps/leaflet',
+          path: '/maps/ia',
           subIcon: `<svg xmlns="http://www.w3.org/2000/svg" class="side-menu-doublemenu__icon" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M63.81,192.19c-47.89-79.81,16-159.62,151.64-151.64C223.43,176.23,143.62,240.08,63.81,192.19Z" opacity="0.2"></path><path d="M63.81,192.19c-47.89-79.81,16-159.62,151.64-151.64C223.43,176.23,143.62,240.08,63.81,192.19Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><line x1="160" y1="96" x2="40" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line></svg>`,
-          dirchange: false, selected: false, title: 'Leaflet Maps', type: 'link'
+          dirchange: false, selected: false, title: 'IA simulation', type: 'link'
         },
-        {
-          path: '/maps/google-map',
-          subIcon: `<svg xmlns="http://www.w3.org/2000/svg" class="side-menu-doublemenu__icon" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><circle cx="128" cy="128" r="88" opacity="0.2"></circle><path d="M128,128h88a88,88,0,1,1-20.11-56" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path></svg>`,
-          dirchange: false, selected: false, title: 'Google Maps', type: 'link'
-        }
+      {
+                path: '/maps/ortools',
+                subIcon: `<svg xmlns="http://www.w3.org/2000/svg" class="side-menu-doublemenu__icon" viewBox="0 0 256 256"><rect width="256" height="256" fill="none"></rect><path d="M63.81,192.19c-47.89-79.81,16-159.62,151.64-151.64C223.43,176.23,143.62,240.08,63.81,192.19Z" opacity="0.2"></path><path d="M63.81,192.19c-47.89-79.81,16-159.62,151.64-151.64C223.43,176.23,143.62,240.08,63.81,192.19Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></path><line x1="160" y1="96" x2="40" y2="216" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"></line></svg>`,
+                dirchange: false, selected: false, title: 'OrTools', type: 'link'
+              },
       ]
     },
   ]

@@ -1,117 +1,134 @@
-<app-breadcrumb title="Dashboards" sub_title="Projects"  active_item="Create Project"></app-breadcrumb>
+<app-breadcrumb title="Dashboards" sub_title="Projects" active_item="Create Project"></app-breadcrumb>
 
-  <!-- Start::row-1 -->
-  <div class="row">
-    <div class="col-xl-12">
-        <div class="card custom-card">
-            <div class="card-header">
-                <div class="card-title">
-                    Create Project
-                </div>
-            </div>
-            <div class="card-body">
-                <div class="row gy-3">
-                    <div class="col-xl-4">
-                        <label for="input-label" class="form-label">Project Name :</label>
-                        <input type="text" class="form-control" id="input-label" placeholder="Enter Project Name">
-                    </div>
-                    <div class="col-xl-4">
-                        <label for="input-label11" class="form-label">Project Manager :</label>
-                        <input type="text" class="form-control" id="input-label11" placeholder="Project Manager Name">
-                    </div>
-                    <div class="col-xl-4">
-                        <label for="input-label1" class="form-label">Client / Stakeholder :</label>
-                        <input type="text" class="form-control" id="input-label1" placeholder="Enter Client Name">
-                    </div>
-                    <div class="col-xl-12">
-                        <label class="form-label">Project Description :</label>
-                        <div id="project-descriptioin-editor">
-                          <quill-editor  id="editor"   >
-                        </quill-editor>
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <label class="form-label">Start Date :</label>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-text text-muted"> <i class="ri-calendar-line"></i> </div>
-                                <spk-flatpickr placeholder="Choose Date and Time" class=""
-                                [mode]="'single'" [altInput]="false" [convertModelValue]="true" [enableTime]="true"
-                                [dateFormat]="'Y-m-d H:i'"></spk-flatpickr>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <label class="form-label">End Date :</label>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-text text-muted"> <i class="ri-calendar-line"></i> </div>
-                                <spk-flatpickr placeholder="Choose Date and Time" class=""
-                                [mode]="'single'" [altInput]="false" [convertModelValue]="true" [enableTime]="true"
-                                [dateFormat]="'Y-m-d H:i'"></spk-flatpickr>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6">
-                        <label class="form-label">Status :</label>
-                        <spk-ng-select
-                        [options]="StatusSelect"
-                        [id]="'choices-single-default'"
-                        [selectClass]="''"
-                        [clearable]="true"
-                        [searchable]="true"
-                        [hideSelected]="true"
-                        [placeholder]="'Inprogress'"
-                        [additionalProperties]="{}">
-                        </spk-ng-select>
-                    </div>
-                    <div class="col-xl-6">
-                        <label class="form-label">Priority :</label>
-                        <spk-ng-select
-                        [options]="Priority"
-                        [id]="'choices-single-default2'"
-                        [selectClass]="''"
-                        [clearable]="true"
-                        [searchable]="true"
-                        [hideSelected]="true"
-                        [placeholder]="'High'"
-                        [additionalProperties]="{}">
-                        </spk-ng-select>
-                    </div>
-                    <div class="col-xl-6">
-                        <label class="form-label">Assigned To</label>
-                        <spk-ng-select
-                        [options]="AsignSelect"
-                        [id]="'assigned-team-members'"
-                        [selectClass]="''"
-                        [clearable]="true"
-                        [defaultValue]="selectedTags"
-                        [multiple]="true"
-                        [searchable]="true"
-                        [hideSelected]="true"
-                        [placeholder]="'Medium'"
-                        [additionalProperties]="{}">
-                        </spk-ng-select>
-                    </div>
-                    <div class="col-xl-6">
-                        <label class="form-label">Tags</label>
-                        <tag-input [(ngModel)]="Passing" class="border p-1 px-2"  [theme]="'bootstrap'"
-                        [removable]="false">
-             </tag-input>
-                      </div>
-                    <div class="col-xl-12">
-                        <label class="form-label">Attachments</label>
-                        <file-pond #myPond [options]="pondOptions" class="multiple-filepond" name="filepond"
-                        id="file-input" [files]="pondFiles" (oninit)="pondHandleInit()"
-                        (onaddfile)="pondHandleAddFile($event)" (onactivatefile)="pondHandleActivateFile($event)">
-                    </file-pond>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-primary-light btn-wave ms-auto float-end">Create Project</button>
-            </div>
+<div class="row">
+  <div class="col-xl-12">
+    <div class="card custom-card">
+      <div class="card-header">
+        <div class="card-title">Create Project</div>
+      </div>
+
+      <div class="card-body">
+        <div class="row gy-3">
+          <div class="col-xl-4">
+            <label class="form-label">Project ID (Optional) :</label>
+            <input type="text" class="form-control" placeholder="Auto-generated if empty"
+                   [(ngModel)]="projectId" name="projectId">
+            <small class="form-text text-muted">Leave empty to auto-generate</small>
+          </div>
+
+          <!-- Project Name -->
+          <div class="col-xl-4">
+            <label class="form-label">Project Name :</label>
+            <input type="text" class="form-control" placeholder="Enter Project Name"
+                   [(ngModel)]="projectName" name="projectName" required>
+          </div>
+
+          <!-- Project Manager -->
+          <div class="col-xl-4">
+            <label class="form-label">Project Manager ID :</label>
+            <input type="text" class="form-control" placeholder="Manager ID"
+                   [(ngModel)]="projectManager" name="projectManager" required>
+          </div>
+
+          <!-- Client -->
+          <div class="col-xl-4">
+            <label class="form-label">Client ID :</label>
+            <input type="text" class="form-control" placeholder="Enter Client ID"
+                   [(ngModel)]="clientId" name="clientId" required>
+          </div>
+
+          <!-- Description -->
+          <div class="col-xl-12">
+            <label class="form-label">Project Description :</label>
+            <quill-editor [(ngModel)]="description" name="description" [modules]="modules"></quill-editor>
+          </div>
+
+          <!-- Start Date -->
+          <div class="col-xl-6">
+            <label class="form-label">Start Date :</label>
+            <input type="date" class="form-control"
+                   [(ngModel)]="startDate" name="startDate"
+                   placeholder="Choose Start Date" required>
+          </div>
+
+          <!-- End Date -->
+          <div class="col-xl-6">
+            <label class="form-label">End Date :</label>
+            <input type="date" class="form-control"
+                   [(ngModel)]="endDate" name="endDate"
+                   placeholder="Choose End Date" required>
+          </div>
+
+          <!-- Status -->
+          <div class="col-xl-6">
+            <label class="form-label">Status :</label>
+            <select class="form-control" [(ngModel)]="status" name="status" required>
+              <option [ngValue]="null">Select Status</option>
+              <option *ngFor="let opt of StatusSelect" [ngValue]="opt">
+                {{opt.label}}
+              </option>
+            </select>
+          </div>
+
+          <!-- Priority -->
+          <div class="col-xl-6">
+            <label class="form-label">Priority :</label>
+            <select class="form-control" [(ngModel)]="priority" name="priority" required>
+              <option [ngValue]="null">Select Priority</option>
+              <option *ngFor="let opt of Priority" [ngValue]="opt">
+                {{opt.label}}
+              </option>
+            </select>
+          </div>
+
+          <!-- Budget -->
+          <div class="col-xl-6">
+            <label class="form-label">Budget :</label>
+            <input type="number" class="form-control" placeholder="Enter Budget"
+                   [(ngModel)]="budget" name="budget" min="0">
+          </div>
+
+          <!-- Risk Level -->
+          <div class="col-xl-6">
+            <label class="form-label">Risk Level (0-1) :</label>
+            <input type="number" class="form-control" placeholder="Enter Risk Level"
+                   [(ngModel)]="riskLevel" name="riskLevel" min="0" max="1" step="0.1">
+          </div>
+
+          <!-- Assigned To -->
+          <div class="col-xl-6">
+            <label class="form-label">Assigned To (Worker IDs) :</label>
+            <select class="form-control" [(ngModel)]="assignedTo"
+                    name="assignedTo" multiple size="5">
+              <option *ngFor="let opt of AsignSelect" [ngValue]="opt">
+                {{opt.label}}
+              </option>
+            </select>
+            <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple</small>
+          </div>
+
+          <!-- Tags -->
+          <div class="col-xl-6">
+            <label class="form-label">Tags :</label>
+            <tag-input [(ngModel)]="tags" name="tags" [theme]="'bootstrap'" [removable]="true"></tag-input>
+          </div>
+
+          <!-- Attachments -->
+          <div class="col-xl-12">
+            <label class="form-label">Attachments</label>
+            <file-pond #myPond [options]="pondOptions" [files]="pondFiles"
+                       (oninit)="pondHandleInit()"
+                       (onaddfile)="pondHandleAddFile($event)"
+                       (onactivatefile)="pondHandleActivateFile($event)">
+            </file-pond>
+          </div>
+
         </div>
+      </div>
+
+      <div class="card-footer">
+        <button class="btn btn-primary-light btn-wave ms-auto float-end" (click)="createProject()">Create Project</button>
+      </div>
     </div>
+  </div>
 </div>
-<!--End::row-1 -->

@@ -49,6 +49,7 @@
     "date-fns": "^4.1.0",
     "echarts": "^6.0.0",
     "filepond-plugin-image-preview": "^4.6.12",
+    "firebase": "^12.8.0",
     "glightbox": "^3.3.1",
     "gridjs": "^6.2.0",
     "gridjs-angular": "^2.0.0",
@@ -82,7 +83,8 @@
     "sweetalert2": "^11.22.3",
     "swiper": "^11.2.10",
     "tslib": "^2.3.0",
-    "tsparticles": "^3.9.1"
+    "tsparticles": "^3.9.1",
+    "zone.js": "^0.15.1"
   },
   "devDependencies": {
     "@angular/build": "^20.2.0",

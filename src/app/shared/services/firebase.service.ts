@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class FirebaseService {
   constructor() {
-    AngularFireModule.initializeApp(environment.firebase);
+//     AngularFireModule.initializeApp(environment.firebase);
   }
 
   getFirestore() {

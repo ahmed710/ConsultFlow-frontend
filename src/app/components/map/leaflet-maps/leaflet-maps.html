@@ -1,56 +1,140 @@
-<app-breadcrumb title="Maps" active_item="Leaflet Maps"  [subtitle]='false'></app-breadcrumb><!-- breadcrumb -->
+<div class="container">
 
-<!-- Start::row-1 -->
-<div class="row">
-    <div class="col-xl-6">
-        <div class="card custom-card">
-            <div class="card-header">
-                <div class="card-title">Leaflet Map</div>
-            </div>
-            <div class="card-body">
-                <div id="map" ></div>
-            </div>
-        </div>
+  <h2>🧠 AI Scenario Simulation</h2>
+
+  <!-- PROJECT -->
+  <div class="card">
+    <h3> Select Project</h3>
+    <select [(ngModel)]="scenario.project">
+      <option [ngValue]="null">-- Select Project --</option>
+      <option *ngFor="let p of projects" [ngValue]="p">
+        {{ p.name }}
+      </option>
+    </select>
+  </div>
+
+  <!-- SITUATION -->
+  <div class="card">
+    <h3> Situation</h3>
+
+    <select [(ngModel)]="scenario.situation">
+      <option *ngFor="let s of situations" [ngValue]="s">
+        {{ s }}
+      </option>
+    </select>
+
+    <button (click)="randomSituation()">🎲 Random</button>
+  </div>
+
+  <!-- CANDIDATES -->
+  <div class="card">
+    <h3>👨‍💻 Candidates</h3>
+
+    <div class="list">
+      <div *ngFor="let c of candidates"
+           (click)="toggleCandidate(c)"
+           [class.selected]="isSelectedCandidate(c)"
+           class="item">
+        {{ c.fullName }} - {{ c.skills |json}}
+      </div>
     </div>
-    <div class="col-xl-6">
-        <div class="card custom-card">
-            <div class="card-header">
-                <div class="card-title">Map With Markers,circles and Polygons</div>
-            </div>
-            <div class="card-body">
-                <div id="map1"></div>
-            </div>
-        </div>
+
+    <!-- SELECTED CANDIDATES SUMMARY -->
+    <div *ngIf="scenario.selectedCandidates.length > 0" class="selected-summary">
+      <h4>Selected Candidates:</h4>
+      <ul>
+        <li *ngFor="let c of scenario.selectedCandidates">
+          {{ c.fullName }} - {{ c.skills |json }}
+        </li>
+      </ul>
     </div>
-    <div class="col-xl-6">
-        <div class="card custom-card">
-            <div class="card-header">
-                <div class="card-title">Map With Popup</div>
-            </div>
-            <div class="card-body">
-                <div id="map-popup"></div>
-            </div>
-        </div>
+  </div>
+
+  <!-- CONSULTANTS -->
+  <div class="card">
+    <h3>🧑‍💼 Consultants</h3>
+    <div class="list">
+      <div *ngFor="let c of consultants"
+           (click)="toggleConsultant(c)"
+           [class.selected]="isSelectedConsultant(c)"
+           class="item">
+        {{ c.name }} - {{ c.expertise }}
+      </div>
     </div>
-    <div class="col-xl-6">
-        <div class="card custom-card">
-            <div class="card-header">
-                <div class="card-title">Map With Custom Icon</div>
-            </div>
-            <div class="card-body">
-                <div id="map-custom-icon"></div>
-            </div>
-        </div>
+
+    <!-- SELECTED CONSULTANTS SUMMARY -->
+    <div *ngIf="scenario.selectedConsultants.length > 0" class="selected-summary">
+      <h4>Selected Consultants:</h4>
+      <ul>
+        <li *ngFor="let c of scenario.selectedConsultants">
+          {{ c.name }} - {{ c.expertise }}
+        </li>
+      </ul>
     </div>
-    <div class="col-xl-6">
-        <div class="card custom-card">
-            <div class="card-header">
-                <div class="card-title">Interactive Choropleth Map</div>
-            </div>
-            <div class="card-body">
-                <div id="interactive-map" leaflet [leafletOptions]="options5"></div>
-            </div>
-        </div>
+  </div>
+
+  <!-- EXTRA CONTEXT -->
+  <div class="card">
+    <h3>📝 Extra Context</h3>
+    <textarea [(ngModel)]="scenario.extraContext"
+              placeholder="Add additional details...">
+    </textarea>
+  </div>
+
+  <!-- ACTION -->
+  <button class="generate-btn" (click)="simulate()" [disabled]="loading">
+    🚀 Run Simulation
+  </button>
+
+  <div *ngIf="result" class="result">
+
+    <!-- RECOMMENDED -->
+    <h3>🏆 Recommended Candidate</h3>
+    <div class="player-card" *ngIf="result.recommended">
+      <h2>{{ result.recommended }}</h2>
+      <p class="risk-badge">{{ result.riskLevel }} Risk</p>
     </div>
+
+    <!-- CANDIDATES LIST -->
+    <h3>👨‍💻 Candidate Analysis</h3>
+    <div class="candidate-card" *ngFor="let c of result.candidates">
+      <div class="candidate-header">
+        <h4>{{ c.name }}</h4>
+        <span class="score-badge">{{ c.score }}/100</span>
+        <span class="risk-badge risk-{{ c.risk | lowercase }}">{{ c.risk }} Risk</span>
+      </div>
+
+      <p><strong>Productivity:</strong> {{ c.productivity }}</p>
+
+      <div class="strengths-weaknesses">
+        <div>
+          <h5>✅ Strengths</h5>
+          <ul>
+            <li *ngFor="let s of c.strengths">{{ s }}</li>
+          </ul>
+        </div>
+        <div>
+          <h5>⚠️ Weaknesses</h5>
+          <ul>
+            <li *ngFor="let w of c.weaknesses">{{ w }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLAN -->
+    <h3>🛠 Action Plan</h3>
+    <div class="week-card" *ngFor="let week of result.plan">
+      <h4>Week {{ week.week }}</h4>
+      <ul>
+        <li *ngFor="let task of week.tasks">{{ task }}</li>
+      </ul>
+    </div>
+
+    <!-- SUMMARY -->
+    <h3>📋 Summary</h3>
+    <p class="summary">{{ result.summary }}</p>
+
+  </div>
+
 </div>
-<!--End::row-1 -->

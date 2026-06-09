@@ -47,20 +47,6 @@ export const admin: Routes = [
           ),
       },
       {
-        path: 'sign-in/basic',
-        loadComponent: () =>
-          import('./sign-in/basic/basic').then(
-            (m) => m.Basic
-          ),
-      },
-      {
-        path: 'sign-in/cover',
-        loadComponent: () =>
-          import('./sign-in/cover/cover').then(
-            (m) => m.Cover
-          ),
-      },
-      {
         path: 'two-step-verification/basic',
         loadComponent: () =>
           import('./two-step-verification/basic/basic').then(
