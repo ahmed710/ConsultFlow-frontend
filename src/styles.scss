@@ -1,50 +1,48 @@
 /* You can add global styles to this file, and also import other style files */
-@forward 'glightbox/dist/css/glightbox.min.css';
-@forward "../node_modules/ngx-toastr/toastr.css";
-
-@forward "../node_modules/quill/dist/quill.snow.css";
-@forward "../node_modules/quill/dist/quill.bubble.css";
-
-@forward "../node_modules/@ng-select/ng-select/themes/default.theme.css";
+@use 'glightbox/dist/css/glightbox.min.css';
+@use 'ngx-toastr/toastr.css';
+@use 'quill/dist/quill.snow.css' as quill-snow;
+@use 'quill/dist/quill.bubble.css' as quill-bubble;
+@use '@ng-select/ng-select/themes/default.theme.css';
 
 // angular material
-@forward "../node_modules/@angular/cdk/overlay-prebuilt.css";
-@forward "../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
-@forward "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
-@forward "ngx-tagify/styles/tagify";
+@use '@angular/cdk/overlay-prebuilt.css';
+@use '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@use 'ngx-tagify/styles/tagify';
 
 // =================== ngx-emoji-mart ===================
-@forward '@ctrl/ngx-emoji-mart/picker';
+@use '@ctrl/ngx-emoji-mart/picker';
 
 // =================== Gridjs Tables ===================
-@forward '../node_modules/gridjs/dist/theme/mermaid.min.css';
-@forward '../node_modules/shepherd.js/dist/css/shepherd.css';
-//flatpicker
-@forward '../node_modules/flatpickr/dist/flatpickr.css';
+@use 'gridjs/dist/theme/mermaid.min.css';
+@use 'shepherd.js/dist/css/shepherd.css';
+
+//flatpickr
+@use 'flatpickr/dist/flatpickr.css';
+
 //NGX-FILEPOND
-@forward'../node_modules/filepond/dist/filepond.min.css';
-@forward "../node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
-@forward '../node_modules/overlayscrollbars/styles/overlayscrollbars.css';
-@forward '../node_modules/ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.css';
-@forward '../node_modules/leaflet/dist/leaflet.css';
+@use 'filepond/dist/filepond.min.css';
+@use 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+
+@use 'overlayscrollbars/styles/overlayscrollbars.css';
+@use 'ngx-owl-carousel-o/lib/styles/prebuilt-themes/owl.carousel.css';
+@use 'leaflet/dist/leaflet.css';
+
 //ng2-nouislider
-@forward "../node_modules/nouislider/dist/nouislider.css";
-@forward '../node_modules/ngx-easy-table/style.css';
+@use 'nouislider/dist/nouislider.css';
+@use 'ngx-easy-table/style.css';
 
-@forward 'swiper/css';
-@forward 'swiper/css/pagination';
-@forward 'swiper/css/navigation';
-@forward 'swiper/element/css/mousewheel';
+@use 'swiper/css';
+@use 'swiper/css/pagination';
+@use 'swiper/css/navigation';
+@use 'swiper/element/css/mousewheel';
 
+@use 'intl-tel-input/build/css/intlTelInput.css';
 
-@forward "../node_modules/intl-tel-input/build/css/intlTelInput.css";
-//@forward "../node_modules/swiper/swiper-bundle.css";
 @import "../public/assets/css/icons.css";
 @import "../public/assets/css/styles.css";
 
-
-
-// font awsome
+// font awesome
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 

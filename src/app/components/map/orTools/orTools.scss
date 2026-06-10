@@ -1,3 +1,4 @@
+@use 'sass:color';
 // ── DESIGN TOKENS ────────────────────────────────────────────────────────────
 $bg:        #08090d;
 $surface:   #0e1018;
@@ -959,7 +960,7 @@ $burn-critical: #ff3b3b;
   border-radius: 3px;
   transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
 
-  &.hi  { background: linear-gradient(90deg, darken($burn-critical, 10%), $burn-critical); }
+  &.hi  { background: linear-gradient(90deg, color.adjust($burn-critical, $lightness: -10%)); }
   &.mid { background: linear-gradient(90deg, $accent2, darken($accent2, 5%)); }
   &:not(.hi):not(.mid) { background: linear-gradient(90deg, $accent2, $accent); }
 }

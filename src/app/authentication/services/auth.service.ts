@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Auth, signInWithEmailAndPassword, User } from '@angular/fire/auth';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   showLoader = false;
 
-  constructor(private auth: Auth) {}
+  private auth = inject(Auth);
 
   async loginWithEmail(email: string, password: string): Promise<User> {
     this.showLoader = true;

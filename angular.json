@@ -18,7 +18,7 @@
           "builder": "@angular/build:application",
           "options": {
             "polyfills": [
-                "@angular/localize/init"
+              "@angular/localize/init"
             ],
             "allowedCommonJsDependencies": [
               "sweetalert2",
@@ -64,7 +64,7 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                 "maximumWarning": "5mb",
+                  "maximumWarning": "5mb",
                   "maximumError": "5mb"
                 }
               ],

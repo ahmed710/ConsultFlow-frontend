@@ -158,7 +158,7 @@ export class OrTools implements OnInit {
     const body = this.buildRequestBody();
     console.log('OR-Tools request:', body);
 
-    this.http.post(`${environment.apiUrl}/ai/solve`, body).subscribe({
+    this.http.post(`${environment.apiUrl}/solve`, body).subscribe({
       next: (res: any) => {
 
         this.result = {

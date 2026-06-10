@@ -6,6 +6,12 @@ import { Full_Content_Routes } from './shared/routes/content.routes';
 import { Authentication_ROUTES } from './shared/routes/authentication.routes';
 import { AuthenticationLayout } from './shared/layouts/authentication-layout/authentication-layout';
 
+export const authGuard = () => {
+  const auth = inject(Auth);
+  if (auth.currentUser) return true;
+  return inject(Router).createUrlTree(['/auth/login']);
+};
+
 export const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
 
@@ -19,13 +25,10 @@ export const routes: Routes = [
     path: '',
     component: FullLayout,
     children: Full_Content_Routes,
-    // Example guard using lazy inject
     canActivate: [() => {
       const auth = inject(Auth);
       const router = inject(Router);
-
       if (auth.currentUser) return true;
-
       router.navigate(['/auth/login']);
       return false;
     }],

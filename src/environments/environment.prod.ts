@@ -9,5 +9,5 @@ export const environment = {
         messagingSenderId: "1014939095942",
         appId: "1:1014939095942:web:42cbfd6ab7c7bf234e5207"
     },
-    apiUrl: "http://localhost:5000/api"
+    apiUrl: "https://dotnet-api-291155566824.us-central1.run.app/api"
 };
