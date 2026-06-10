@@ -1,4 +1,3 @@
-# Build Angular application
 FROM node:20 AS build
 
 WORKDIR /app
@@ -11,10 +10,9 @@ COPY . .
 
 RUN npm run build
 
-# Serve with nginx
 FROM nginx:alpine
 
-COPY --from=build front-pfe/preview/browser /usr/share/nginx/html
+COPY --from=build /app/preview/browser /usr/share/nginx/html
 
 EXPOSE 80
 
