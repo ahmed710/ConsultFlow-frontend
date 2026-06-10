@@ -1,18 +1,20 @@
-FROM node:20-alpine AS build
+# Build Angular application
+FROM node:20 AS build
 
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 COPY . .
 
 RUN npm run build
 
+# Serve with nginx
 FROM nginx:alpine
 
-COPY --from=build /app/preview/browser /usr/share/nginx/html
+COPY --from=build front-pfe/preview/browser /usr/share/nginx/html
 
 EXPOSE 80
 
